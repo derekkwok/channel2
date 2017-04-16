@@ -19,7 +19,12 @@ class BaseViewTest(BaseTestCase):
         self.assertTrue(response['Last-Modified'])
         self.assertTrue(response.content)
 
-    def test_static_view_bad_request(self):
+    def test_static_view_bad_request1(self):
+        request = self.create_request()
+        response = static_view(request, '../manage.py')
+        self.assertEqual(response.status_code, 400)
+
+    def test_static_view_bad_request2(self):
         request = self.create_request()
         response = static_view(request, 'css/../../manage.py')
         self.assertEqual(response.status_code, 400)

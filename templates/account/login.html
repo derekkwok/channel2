@@ -1,4 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'account/base.html' %}
+{% import 'macros/forms.html' as forms with context %}
 
-{% block body %}
+{% block content %}
+    <h2>Channel 2</h2>
+    <form action="" method="post">
+        {{ forms.non_field_errors(form) }}
+        {{ forms.csrf_input() }}
+        {{ forms.field(form.email) }}
+        {{ forms.field(form.password) }}
+        <button>Login</button>
+        <div class="account-reset-link">
+            <a href="#">Doh! I forgot my password.</a>
+        </div>
+    </form>
 {% endblock %}

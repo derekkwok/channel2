@@ -1,22 +1,159 @@
+/* -----------------------------------------------------------------------------
+    Variables.
+----------------------------------------------------------------------------- */
+
 :root {
-    --font-family: 'Open Sans', sans-serif;
+    --font-family: 'Roboto', sans-serif;
     --font-size: 15px;
     --line-height: 1.6;
+
+    --main-bg: #333;
+    --main-color: #fff;
+
+    --accent1: #428bca;
+    --accent2: #5cb85c;
+    --accent3: #f0ad4e;
+    --accent4: #d9534f;
+    --accent5: #5bc0de;
+
+    --input-bg: #222;
+    --input-border: 1px solid #000;
 }
+
+/* -----------------------------------------------------------------------------
+    Main styles.
+----------------------------------------------------------------------------- */
 
 * {
     box-sizing: border-box;
 }
 
 html, body {
+    background-color: var(--main-bg);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
     margin: 0;
     padding: 0;
 }
 
+a {
+    color: var(--accent1);
+    text-decoration: none;
+}
+
+/* -----------------------------------------------------------------------------
+    Input styles.
+----------------------------------------------------------------------------- */
+
+input {
+    background-color: var(--input-bg);
+    border: var(--input-border);
+    color: var(--main-color);
+    display: block;
+    font-size: var(--font-size);
+    height: 46px;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+    -webkit-appearance: none;
+}
+
+.form-field {
+    margin-bottom: 10px;
+}
+
+.form-field.error > input {
+    border-bottom: none;
+}
+
+.error-block {
+    background-color: var(--accent4);
+    border: var(--input-border);
+    border-top: none;
+    color: var(--main-color);
+    display: block;
+    font-size: 13px;
+    padding: 5px 10px;
+}
+
+/* -----------------------------------------------------------------------------
+    Button styles.
+----------------------------------------------------------------------------- */
+
+button, .button {
+    display: inline-block;
+    background-color: var(--input-bg);
+    border: var(--input-border);
+    color: var(--main-color);
+    cursor: pointer;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    margin: 0;
+    padding: 10px 15px;
+}
+
+/* -----------------------------------------------------------------------------
+    Message styles.
+----------------------------------------------------------------------------- */
+
+.message-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.message {
+    color: var(--main-color);
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 15px 0;
+    padding: 10px 15px;
+}
+
+.message-info {
+    background-color: var(--accent1);
+}
+
+.message-success {
+    background-color: var(--accent2);
+}
+
+.message-warning {
+    background-color: var(--accent3);
+}
+
+.message-error {
+    background-color: var(--accent4);
+}
+
+/* -----------------------------------------------------------------------------
+    Account page styles.
+----------------------------------------------------------------------------- */
+
 .account-page {
     align-items: center;
-    background-color: #333;
+    color: var(--main-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     min-height: 100vh;
+}
+
+.account-page > h2 {
+    font-size: 36px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+}
+
+.account-page > form {
+    max-width: 340px;
+    padding: 20px;
+    width: 100%;
+}
+
+.account-reset-link {
+    margin-top: 30px;
+    text-align: center;
 }

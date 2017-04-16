@@ -1,0 +1,28 @@
+{% macro csrf_input() %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+{% endmacro %}
+
+{% macro non_field_errors(form) %}
+    {% if form.non_field_errors() %}
+        <ul class="message-list">
+            {% for error in form.non_field_errors() %}
+                <li class="message message-error">{{ error|safe }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% macro field(field, show_label=False) %}
+    <div class="form-field{% if field.errors %} error{% endif %}">
+        {% if show_label %}
+            {{ field.label_tag()|safe }}
+        {% endif %}
+        {{ field|safe }}
+        {% for error in field.errors %}
+            <span class="error-block">{{ error|safe }}</span>
+        {% endfor %}
+        {% if field.help_text %}
+            <span class="help-block">{{ field.help_text|safe }}</span>
+        {% endif %}
+    </div>
+{% endmacro %}
