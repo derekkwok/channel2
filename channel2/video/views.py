@@ -1,7 +1,7 @@
-from channel2.base.views import TemplateView
+from channel2.base.views import ProtectedTemplateView
 
 
-class IndexView(TemplateView):
+class IndexView(ProtectedTemplateView):
 
     template_name = 'video/index.html'
 

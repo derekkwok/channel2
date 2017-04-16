@@ -1,17 +1,34 @@
+import os
 import time
 import warnings
 
+from django.conf import settings
 from django.core.cache import cache
+from django.core.management import call_command
 from django.test import TestCase
 from django.test.runner import DiscoverRunner
+from django.test.utils import override_settings
+
+from channel2.account.models import User
 
 
 class Channel2TestRunner(DiscoverRunner):
 
     def setup_databases(self, **kwargs):
-        return super().setup_databases(**kwargs)
+        db = super().setup_databases(**kwargs)
+        call_command('datacreator')
+        return db
 
 
+def fast_set_password(self, raw_password):
+    self.password = raw_password
+
+
+def fast_check_password(self, raw_password):
+    return self.password == raw_password
+
+
+@override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'media-test'))
 class BaseTestCase(TestCase):
 
     # Number of milliseconds a test can take before it is considered "too long".
@@ -19,8 +36,16 @@ class BaseTestCase(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.test_start = time.time()
         cache.clear()
+
+        # Override setting and checking of password for speed.
+        User.set_password = fast_set_password
+        User.check_password = fast_check_password
+
+        # Login with the testuser@example.com.
+        self.user = User.objects.get(email='testuser@example.com')
+        self.client.login(email=self.user.email, password=self.user.password)
+        self.test_start = time.time()
 
     def tearDown(self):
         duration = self.get_test_duration()

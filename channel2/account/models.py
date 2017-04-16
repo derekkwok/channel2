@@ -1,5 +1,4 @@
-from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.db import models
 
 
@@ -16,7 +15,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractUser):
+class User(AbstractBaseUser):
 
     email = models.EmailField(max_length=254, unique=True)
     is_active = models.BooleanField(default=False)

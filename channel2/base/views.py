@@ -1,7 +1,9 @@
 import re
 
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
+from django.utils.decorators import method_decorator
 from django.utils.module_loading import import_string
 from django.views.generic.base import View
 
@@ -32,3 +34,10 @@ class TemplateView(View):
         response = HttpResponse(content=content)
         response.template_name = self.template_name
         return response
+
+
+class ProtectedTemplateView(TemplateView):
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
