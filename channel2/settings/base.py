@@ -18,6 +18,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channel2.account',
+    'channel2.base',
+    'channel2.core',
+    'channel2.video',
 ]
 
 MIDDLEWARE = [
