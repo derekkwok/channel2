@@ -37,6 +37,22 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'channel2.urls'
 
+JINJA2_DIRS = [
+    os.path.join(BASE_DIR, 'templates'),
+]
+
+JINJA2_CONTEXT_PROCESSORS = [
+    'django.contrib.auth.context_processors.auth',
+    'django.template.context_processors.debug',
+    'django.template.context_processors.i18n',
+    'django.template.context_processors.media',
+    'django.template.context_processors.static',
+    'django.template.context_processors.tz',
+    'django.template.context_processors.request',
+    'django.template.context_processors.csrf',
+    'django.contrib.messages.context_processors.messages',
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -72,3 +88,5 @@ TIME_ZONE = 'UTC'
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+TEST_RUNNER = 'channel2.base.tests.Channel2TestRunner'

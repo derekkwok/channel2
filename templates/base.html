@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>{% block title %}Channel 2{% endblock %}</title>
+</head>
+<body>
+    {% block body %}
+        <div class="template">
+            {% include 'base/header.html' %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>

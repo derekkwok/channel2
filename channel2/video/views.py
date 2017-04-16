@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from channel2.base.views import TemplateView
 
-# Create your views here.
+
+class IndexView(TemplateView):
+
+    template_name = 'video/index.html'
+
+    def get(self, request):
+        return self.render_to_response({})
