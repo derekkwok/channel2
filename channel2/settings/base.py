@@ -19,7 +19,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
 
     'channel2.account',
     'channel2.base',
@@ -48,7 +47,6 @@ JINJA2_CONTEXT_PROCESSORS = [
     'django.template.context_processors.debug',
     'django.template.context_processors.i18n',
     'django.template.context_processors.media',
-    'django.template.context_processors.static',
     'django.template.context_processors.tz',
     'django.template.context_processors.request',
     'django.template.context_processors.csrf',

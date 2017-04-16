@@ -1,0 +1,22 @@
+:root {
+    --font-family: 'Open Sans', sans-serif;
+    --font-size: 15px;
+    --line-height: 1.6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.account-page {
+    align-items: center;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
