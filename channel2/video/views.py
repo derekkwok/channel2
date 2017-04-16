@@ -19,7 +19,7 @@ class IndexView(ProtectedTemplateView):
 
     template_name = 'video/index.html'
 
-    def get(self, request, path):
+    def get(self, request, path=''):
         """Handles a GET request."""
         if os.path.normpath(path).startswith('..'):
             return HttpResponseBadRequest()
@@ -35,7 +35,7 @@ class IndexView(ProtectedTemplateView):
         for filename in os.listdir(fullpath):
             filepath = os.path.join(path, filename).replace(' ', SPACE_CHAR)
             file_info = FileInfo(
-                filename, reverse('index', args=[filepath]),
+                filename, reverse('video:index', args=[filepath]),
                 os.path.getsize(os.path.join(fullpath, filename)))
             files.append(file_info)
         return files

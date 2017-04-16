@@ -4,13 +4,13 @@ from channel2.base.views import static_view
 from channel2.video.views import IndexView
 
 urlpatterns = [
+    # Index view.
+    url(r'^$', IndexView.as_view(), name='index'),
+
     # Apps.
     url(r'^account/', include('channel2.account.urls', namespace='account')),
+    url(r'^video/', include('channel2.video.urls', namespace='video')),
 
     # Other URLs.
     url(r'^static/(?P<path>.*)', static_view),
-
-    # Index view.
-    url(r'^(?P<path>.*)$', IndexView.as_view(), name='index'),
-    url(r'^$', IndexView.as_view(), name='index'),
 ]

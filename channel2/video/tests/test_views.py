@@ -25,7 +25,7 @@ class TempFile:
 class IndexViewTest(BaseTestCase):
 
     def get_url(self, path=''):
-        return reverse('index', args=[path])
+        return reverse('video:index', args=[path])
 
     def test_get_anonymous(self):
         self.client.logout()
@@ -60,7 +60,7 @@ class IndexViewTest(BaseTestCase):
             filename_to_file = {f.name: f for f in files}
             file1 = filename_to_file['f 1.txt']
             self.assertEqual(file1.size, 6)
-            self.assertEqual(file1.url, '/f+1.txt')
+            self.assertEqual(file1.url, '/video/f+1.txt')
             file2 = filename_to_file['f2.txt']
             self.assertEqual(file2.size, 9)
-            self.assertEqual(file2.url, '/f2.txt')
+            self.assertEqual(file2.url, '/video/f2.txt')
