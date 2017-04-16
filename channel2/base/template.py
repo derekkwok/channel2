@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.template.defaultfilters import filesizeformat
 from django.urls.base import reverse
 
 from jinja2.environment import Environment
@@ -12,5 +13,6 @@ TEMPLATE_SETTINGS = {
 }
 TEMPLATE_ENV = Environment(**TEMPLATE_SETTINGS)
 TEMPLATE_ENV.globals.update(**{
+    'filesizeformat': filesizeformat,
     'url': reverse,
 })

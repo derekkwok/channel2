@@ -2,6 +2,7 @@ import os
 import time
 import warnings
 
+import shutil
 from django.conf import settings
 from django.core.cache import cache
 from django.core.management import call_command
@@ -11,13 +12,20 @@ from django.test.utils import override_settings
 
 from channel2.account.models import User
 
+MEDIA_ROOT_TEST = os.path.join(settings.BASE_DIR, 'media-test')
+
 
 class Channel2TestRunner(DiscoverRunner):
 
     def setup_databases(self, **kwargs):
+        os.mkdir(MEDIA_ROOT_TEST)
         db = super().setup_databases(**kwargs)
         call_command('datacreator')
         return db
+
+    def teardown_databases(self, old_config, **kwargs):
+        super().teardown_databases(old_config, **kwargs)
+        shutil.rmtree(MEDIA_ROOT_TEST, ignore_errors=True)
 
 
 def fast_set_password(self, raw_password):
@@ -28,7 +36,7 @@ def fast_check_password(self, raw_password):
     return self.password == raw_password
 
 
-@override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'media-test'))
+@override_settings(MEDIA_ROOT=MEDIA_ROOT_TEST)
 class BaseTestCase(TestCase):
 
     # Number of milliseconds a test can take before it is considered "too long".
