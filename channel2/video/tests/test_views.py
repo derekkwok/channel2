@@ -9,6 +9,12 @@ class IndexViewTest(BaseTestCase):
         super().setUp()
         self.url = reverse('index')
 
+    def test_get_anonymous(self):
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assertRedirects(
+            response, '{}?next={}'.format(reverse('account:login'), self.url))
+
     def test_get(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)

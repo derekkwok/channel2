@@ -1,5 +1,7 @@
 import os
 
+from django.urls.base import reverse_lazy
+
 # Go up 3 levels.
 BASE_DIR = os.path.abspath(__file__)
 for _ in range(3):
@@ -92,3 +94,6 @@ STATIC_URL = '/static/'
 TEST_RUNNER = 'channel2.base.tests.Channel2TestRunner'
 
 AUTH_USER_MODEL = 'account.User'
+LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_URL = reverse_lazy('account:login')
+LOGOUT_URL = reverse_lazy('account:logout')
