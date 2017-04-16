@@ -90,3 +90,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEST_RUNNER = 'channel2.base.tests.Channel2TestRunner'
+
+AUTH_USER_MODEL = 'account.User'
