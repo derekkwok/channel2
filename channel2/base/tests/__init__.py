@@ -19,6 +19,7 @@ class Channel2TestRunner(DiscoverRunner):
 
     def setup_databases(self, **kwargs):
         os.mkdir(MEDIA_ROOT_TEST)
+        os.mkdir(os.path.join(MEDIA_ROOT_TEST, 'current'))
         db = super().setup_databases(**kwargs)
         call_command('datacreator')
         return db

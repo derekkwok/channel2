@@ -5,7 +5,7 @@ from channel2.video.views import IndexView
 
 urlpatterns = [
     # Index view.
-    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^$', IndexView.as_view(root='current'), name='index'),
 
     # Apps.
     url(r'^account/', include('channel2.account.urls', namespace='account')),

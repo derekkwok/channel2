@@ -10,7 +10,7 @@ from channel2.video.views import IndexView
 class TempFile:
 
     def __init__(self, path, content):
-        self.path = os.path.join(settings.MEDIA_ROOT, path)
+        self.path = os.path.join(settings.MEDIA_ROOT, 'current', path)
         self.content = content
 
     def __enter__(self):
@@ -25,7 +25,7 @@ class TempFile:
 class IndexViewTest(BaseTestCase):
 
     def get_url(self, path=''):
-        return reverse('video:index', args=[path])
+        return reverse('video:current', args=[path])
 
     def test_get_anonymous(self):
         self.client.logout()
@@ -49,18 +49,20 @@ class IndexViewTest(BaseTestCase):
 
     def test_get_files_empty(self):
         view = IndexView()
+        view.root = 'current'
         files = view.get_files('')
         self.assertEqual(len(files), 0)
 
     def test_get_files(self):
         view = IndexView()
+        view.root = 'current'
         with TempFile('f 1.txt', 'Hello!'), TempFile('f2.txt', 'Something'):
             files = view.get_files('')
             self.assertEqual(len(files), 2)
             filename_to_file = {f.name: f for f in files}
             file1 = filename_to_file['f 1.txt']
             self.assertEqual(file1.size, 6)
-            self.assertEqual(file1.url, '/video/list/f+1.txt')
+            self.assertEqual(file1.url, '/video/current/f+1.txt')
             file2 = filename_to_file['f2.txt']
             self.assertEqual(file2.size, 9)
-            self.assertEqual(file2.url, '/video/list/f2.txt')
+            self.assertEqual(file2.url, '/video/current/f2.txt')

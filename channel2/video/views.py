@@ -17,6 +17,9 @@ SPACE_CHAR = '+'
 class IndexView(ProtectedTemplateView):
     """Lists files and directories."""
 
+    # The root directory to serve.
+    root = None
+
     template_name = 'video/index.html'
 
     def get(self, request, path=''):
@@ -30,13 +33,14 @@ class IndexView(ProtectedTemplateView):
     def get_files(self, path):
         """Gets a list of FileInfo objects for the given path."""
         path = path.replace(SPACE_CHAR, ' ')
-        fullpath = os.path.join(settings.MEDIA_ROOT, path)
+        fullpath = os.path.join(settings.MEDIA_ROOT, self.root, path)
         files = []
         for filename in os.listdir(fullpath):
             filepath = os.path.join(path, filename) \
                 .replace(' ', SPACE_CHAR).replace(os.sep, '/').lower()
             file_info = FileInfo(
-                filename, reverse('video:index', args=[filepath]),
+                filename,
+                reverse('video:{}'.format(self.root), args=[filepath]),
                 os.path.getsize(os.path.join(fullpath, filename)))
             files.append(file_info)
         return files
