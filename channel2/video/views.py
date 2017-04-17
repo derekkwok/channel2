@@ -33,7 +33,8 @@ class IndexView(ProtectedTemplateView):
         fullpath = os.path.join(settings.MEDIA_ROOT, path)
         files = []
         for filename in os.listdir(fullpath):
-            filepath = os.path.join(path, filename).replace(' ', SPACE_CHAR)
+            filepath = os.path.join(path, filename) \
+                .replace(' ', SPACE_CHAR).replace(os.sep, '/').lower()
             file_info = FileInfo(
                 filename, reverse('video:index', args=[filepath]),
                 os.path.getsize(os.path.join(fullpath, filename)))
