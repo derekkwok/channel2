@@ -1,16 +1,11 @@
-import mimetypes
-import os
 import re
 
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.http.response import HttpResponse, HttpResponseNotFound, \
-    HttpResponseBadRequest, HttpResponseNotModified
+from django.http.response import HttpResponse
 from django.utils.decorators import method_decorator
-from django.utils.http import http_date
 from django.utils.module_loading import import_string
 from django.views.generic.base import View
-from django.views.static import was_modified_since
 
 from channel2.base.template import TEMPLATE_ENV
 
@@ -46,32 +41,3 @@ class ProtectedTemplateView(TemplateView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-
-
-def static_view(request, path):
-    # Sanity check on requested path.
-    path = os.path.normpath(path)
-    if path == '..' or path.startswith('..' + os.sep):
-        return HttpResponseBadRequest()
-    path = os.path.join(settings.BASE_DIR, 'static', path)
-    if not os.path.exists(path) or not os.path.isfile(path):
-        return HttpResponseNotFound()
-
-    # Check if file was modified.
-    mtime = os.path.getmtime(path)
-    fsize = os.path.getsize(path)
-    modified = was_modified_since(
-        request.META.get('HTTP_IF_MODIFIED_SINCE'), mtime, fsize)
-    if not modified:
-        return HttpResponseNotModified()
-
-    # Generate response.
-    with open(path) as f:
-        content = f.read()
-    content_type, encoding = mimetypes.guess_type(path)
-    content_type = content_type or 'application/octet-stream'
-    response = HttpResponse(content=content, content_type=content_type)
-    response['Last-Modified'] = http_date(mtime)
-    if encoding:
-        response['Content-Encoding'] = encoding
-    return response

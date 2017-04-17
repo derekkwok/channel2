@@ -85,9 +85,6 @@ USE_L10N = True
 TIME_ZONE = 'UTC'
 USE_TZ = True
 
-STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join('G:\\', 'public')
-
 TEST_RUNNER = 'channel2.base.tests.Channel2TestRunner'
 
 AUTH_USER_MODEL = 'account.User'

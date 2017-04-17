@@ -1,6 +1,7 @@
 from django.conf.urls import url, include
+from django.views.static import serve
+from django.conf import settings
 
-from channel2.base.views import static_view
 from channel2.video.views import IndexView
 
 urlpatterns = [
@@ -10,7 +11,13 @@ urlpatterns = [
     # Apps.
     url(r'^account/', include('channel2.account.urls', namespace='account')),
     url(r'^video/', include('channel2.video.urls', namespace='video')),
-
-    # Other URLs.
-    url(r'^static/(?P<path>.*)', static_view),
 ]
+
+if settings.DEBUG:
+    # Other URLs.
+    urlpatterns += [
+        url(r'^static/(?P<path>.*)', serve,
+            {'document_root': settings.STATIC_ROOT}),
+        url(r'^media/(?P<path>.*)', serve,
+            {'document_root': settings.MEDIA_ROOT}),
+    ]
