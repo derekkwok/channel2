@@ -60,7 +60,7 @@ class IndexViewTest(BaseTestCase):
             filename_to_file = {f.name: f for f in files}
             file1 = filename_to_file['f 1.txt']
             self.assertEqual(file1.size, 6)
-            self.assertEqual(file1.url, '/video/f+1.txt')
+            self.assertEqual(file1.url, '/video/list/f+1.txt')
             file2 = filename_to_file['f2.txt']
             self.assertEqual(file2.size, 9)
-            self.assertEqual(file2.url, '/video/f2.txt')
+            self.assertEqual(file2.url, '/video/list/f2.txt')

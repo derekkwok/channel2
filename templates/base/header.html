@@ -1,0 +1,26 @@
+{% import 'macros/forms.html' as forms with context %}
+
+<div class="header-mobile">
+    <span id="header-mobile-menu-button">&#9776;</span>
+    <a class="header-mobile-logo" href="">Channel 2</a>
+</div>
+<header id="header">
+    <a class="header-logo" href="">Channel 2</a>
+    <a class="header-link active" href="">Current</a>
+    <a class="header-link" href="">Anime</a>
+    <a class="header-link" href="">Movies</a>
+    <div class="flex-space"></div>
+    <span class="header-text">{{ user.email }}</span>
+    <a class="header-link" onclick="document.getElementById('logout-form').submit()">Logout</a>
+</header>
+<form action="{{ url('account:logout') }}" method="post" id="logout-form">
+    {{ forms.csrf_input() }}
+</form>
+<script type="text/javascript">
+const header = document.getElementById('header');
+const button = document.getElementById('header-mobile-menu-button');
+button.addEventListener('click', function() {
+    header.classList.toggle('active');
+    button.classList.toggle('active');
+})
+</script>

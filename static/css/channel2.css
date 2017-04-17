@@ -7,8 +7,8 @@
     --font-size: 15px;
     --line-height: 1.6;
 
-    --main-bg: #333;
-    --main-color: #fff;
+    --main-bg: #fff;
+    --main-color: #000;
 
     --accent1: #428bca;
     --accent2: #5cb85c;
@@ -16,8 +16,17 @@
     --accent4: #d9534f;
     --accent5: #5bc0de;
 
+    --account-bg: #333;
+    --account-color: #fff;
+
+    --header-bg: #333;
+    --header-color: #fff;
+    --header-mobile-bg: #222;
+    --header-link-bg-active: #444;
+
     --input-bg: #222;
     --input-border: 1px solid #000;
+    --input-color: #fff;
 }
 
 /* -----------------------------------------------------------------------------
@@ -49,7 +58,7 @@ a {
 input {
     background-color: var(--input-bg);
     border: var(--input-border);
-    color: var(--main-color);
+    color: var(--input-color);
     display: block;
     font-size: var(--font-size);
     height: 46px;
@@ -85,7 +94,7 @@ button, .button {
     display: inline-block;
     background-color: var(--input-bg);
     border: var(--input-border);
-    color: var(--main-color);
+    color: var(--input-color);
     cursor: pointer;
     font-size: var(--font-size);
     line-height: var(--line-height);
@@ -97,8 +106,15 @@ button, .button {
     Grid styles.
 ----------------------------------------------------------------------------- */
 
+.content {
+    padding-top: 50px;
+}
 .container {
     padding: 20px 5%;
+}
+
+.flex-space {
+    flex-grow: 1;
 }
 
 /* -----------------------------------------------------------------------------
@@ -163,16 +179,121 @@ td {
 }
 
 /* -----------------------------------------------------------------------------
+    Header styles.
+----------------------------------------------------------------------------- */
+
+header > * {
+    color: var(--header-color);
+}
+
+.header-link {
+    cursor: pointer;
+}
+
+.header-link.active {
+    background: var(--header-link-bg-active);
+}
+
+@media screen and (min-width: 768px) {
+    .header-mobile {
+        display: none;
+    }
+    header {
+        align-items: center;
+        background-color: var(--header-bg);
+        display: flex;
+        height: 50px;
+        padding-right: 15px;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    .header-logo, .header-link, .header-text {
+        line-height: 50px;
+    }
+    .header-link, .header-text {
+        padding: 0 15px;
+    }
+    .header-logo {
+        font-size: 20px;
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header-mobile {
+        align-items: center;
+        background-color: var(--header-mobile-bg);
+        color: var(--header-color);
+        display: flex;
+        height: 50px;
+
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+    .header-mobile > * {
+        color: var(--header-color);
+    }
+    #header-mobile-menu-button {
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 50px;
+    }
+    #header-mobile-menu-button.active {
+        background-color: var(--header-link-bg-active);
+    }
+    .header-mobile-logo {
+        font-size: 20px;
+        padding: 0 10px;
+    }
+    header {
+        background-color: var(--header-bg);
+        transform: translate3d(-100%, 0, 0);
+        transition: all 300ms;
+        width: 200px;
+
+        position: fixed;
+        top: 50px;
+        bottom: 0;
+        left: 0;
+        z-index: 1000;
+    }
+    header.active {
+        transform: translate3d(0, 0, 0);
+    }
+    .header-logo {
+        display: none;
+    }
+    .header-link {
+        display: block;
+        font-weight: bold;
+        padding: 10px 20px;
+    }
+    .header-text {
+        display: none;
+    }
+}
+
+/* -----------------------------------------------------------------------------
     Account page styles.
 ----------------------------------------------------------------------------- */
 
 .account-page {
     align-items: center;
-    color: var(--main-color);
+    background-color: var(--account-bg);
+    color: var(--account-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
+    padding-bottom: 10%;
 }
 
 .account-page > h2 {
@@ -191,4 +312,8 @@ td {
 .account-reset-link {
     margin-top: 30px;
     text-align: center;
+}
+
+#logout-form {
+    display: none;
 }
