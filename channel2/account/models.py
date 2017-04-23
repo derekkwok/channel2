@@ -23,7 +23,7 @@ class User(AbstractBaseUser):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        db_table = 'User'
+        db_table = 'user'
 
     def get_full_name(self):
         return self.email

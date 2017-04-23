@@ -2,10 +2,11 @@
     root G:\channel2\static
 }
 
-:80/media {
-    root G:\public
-}
-
 :80 {
-    proxy / localhost:8000
+    proxy / localhost:8000 {
+        except /media
+    }
+    internal /media
+    root G:\
+    timeouts none
 }

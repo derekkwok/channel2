@@ -3,7 +3,7 @@
 {% block content %}
     <ul>
         {% for f in files %}
-            <li>{{ f.name }}</li>
+            <li><a href="{{ f.url }}">{{ f.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
