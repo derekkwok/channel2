@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <ul>
-        {% for f in files %}
-            <li><a href="{{ f.url }}">{{ f.name }}</a></li>
+    <div class="dir-list">
+        {% for d in dirs %}
+            <a href="{{ d.url }}" class="dir-item">{{ d.name }}</a>
         {% endfor %}
-    </ul>
+    </div>
+    <div class="file-list">
+        {% for f in files %}
+            <div class="file-item">
+                <a href="{{ f.url }}">
+                    <div class="file-preview"></div>
+                </a>
+                <div>
+                    <a href="{{ f.url }}" class="file-link">{{ f.name }}</a>
+                    <span class="file-data">{{ f.size|filesizeformat }}</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

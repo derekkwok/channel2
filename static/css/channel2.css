@@ -27,6 +27,10 @@
     --input-bg: #222;
     --input-border: 1px solid #000;
     --input-color: #fff;
+
+    --dir-bg-hover: #eee;
+    --dir-border: 1px dashed #ccc;
+    --file-data-color: #666;
 }
 
 /* -----------------------------------------------------------------------------
@@ -316,4 +320,50 @@ header > * {
 
 #logout-form {
     display: none;
+}
+
+/* -----------------------------------------------------------------------------
+    Directory styles.
+----------------------------------------------------------------------------- */
+
+.dir-item {
+    border-bottom: var(--dir-border);
+    display: block;
+    padding: 10px 15px;
+}
+
+.dir-item:hover {
+    background-color: var(--dir-bg-hover);
+}
+
+/* -----------------------------------------------------------------------------
+    File styles.
+----------------------------------------------------------------------------- */
+
+.file-item {
+    border-bottom: var(--dir-border);
+    display: flex;
+    padding: 10px;
+}
+
+.file-preview {
+    background-color: #eee;
+    float: left;
+    height: 45px;
+    width: 80px;
+    margin-right: 10px;
+}
+
+.file-link {
+    display: block;
+    line-height: 1.2;
+}
+
+.file-data {
+    color: var(--file-data-color);
+    font-size: 13px;
+}
+
+.clear {
+    clear: both;
 }

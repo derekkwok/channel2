@@ -5,21 +5,24 @@ from django.urls.base import reverse
 
 from channel2.base.tests import BaseTestCase
 from channel2.video.models import VideoLink
+from channel2.video.views import FileInfo, FileType
 
 
-class TempFile:
+class FileInfoTest(BaseTestCase):
 
-    def __init__(self, path, content):
-        self.path = os.path.join(settings.MEDIA_ROOT, 'current', path)
-        self.content = content
+    def test_file(self):
+        file = FileInfo('current', 'file1.mp4')
+        self.assertEqual(file.name, 'file1.mp4')
+        self.assertEqual(file.size, 12)
+        self.assertEqual(file.type, FileType.FILE)
+        self.assertEqual(
+            file.url, reverse('video:file', args=['current/file1.mp4']))
 
-    def __enter__(self):
-        with open(self.path, 'w') as f:
-            f.write(self.content)
-
-    def __exit__(self, *args):
-        if os.path.exists(self.path):
-            os.remove(self.path)
+    def test_dir(self):
+        dir = FileInfo('', 'current')
+        self.assertEqual(dir.name, 'current')
+        self.assertEqual(dir.type, FileType.DIR)
+        self.assertEqual(dir.url, reverse('directory', args=['current']))
 
 
 class DirectoryViewTest(BaseTestCase):

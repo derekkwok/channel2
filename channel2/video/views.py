@@ -1,5 +1,4 @@
 import os
-from collections import namedtuple
 
 from django.conf import settings
 from django.http.response import HttpResponseBadRequest, Http404
@@ -12,7 +11,39 @@ from channel2.base.responses import HttpResponseXAccel
 from channel2.base.views import ProtectedTemplateView
 from channel2.video.models import VideoLink
 
-FileInfo = namedtuple('FileInfo', ['name', 'url', 'size'])
+
+class FileType:
+
+    DIR = 'dir'
+    FILE = 'file'
+
+
+class FileInfo:
+
+    def __init__(self, path, filename):
+        self.name = filename
+        # Absolute filesystem path to the file.
+        filepath = os.path.join(settings.MEDIA_ROOT, path, filename)
+        self.size = os.path.getsize(filepath)
+        self.type = self.get_type(filepath)
+        self.url = self.get_url(path, filename)
+
+    def get_type(self, filepath):
+        if os.path.isfile(filepath):
+            return FileType.FILE
+        elif os.path.isdir(filepath):
+            return FileType.DIR
+        else:
+            raise RuntimeError('Not file or directory: {}'.format(filepath))
+
+    def get_url(self, path, filename):
+        url_path = os.path.join(path, filename).replace(os.sep, '/')
+        if self.type == FileType.FILE:
+            return reverse('video:file', args=[url_path])
+        elif self.type == FileType.DIR:
+            return reverse('directory', args=[url_path])
+        else:
+            raise RuntimeError('Unhandled type: {}'.format(self.type))
 
 
 class DirectoryView(ProtectedTemplateView):
@@ -22,31 +53,21 @@ class DirectoryView(ProtectedTemplateView):
     def get(self, request, path):
         if os.path.normpath(path).startswith('..'):
             return HttpResponseBadRequest()
-        return self.render_to_response({
-            'files': self.get_files(path)
-        })
 
-    def get_files(self, path):
+        # If the current requested path is not a directory, return 404.
         dirpath = os.path.join(settings.MEDIA_ROOT, path)
         if not os.path.isdir(dirpath):
             raise Http404
-        files = []
-        for filename in os.listdir(dirpath):
-            urlpath = os.path.join(path, filename).replace(os.sep, '/')
-            filepath = os.path.join(dirpath, filename)
-            file_info = FileInfo(
-                filename, self.get_filename_url(filepath, urlpath),
-                os.path.getsize(filepath))
-            files.append(file_info)
-        return files
 
-    def get_filename_url(self, filepath, url_path):
-        if os.path.isfile(filepath):
-            return reverse('video:file', args=[url_path])
-        elif os.path.isdir(filepath):
-            return reverse('directory', args=[url_path])
-        else:
-            raise RuntimeError('Not file or directory: {}'.format(url_path))
+        file_list = [
+            FileInfo(path, filename) for filename in os.listdir(dirpath)]
+        # file info into files and directories.
+        dirs = [file for file in file_list if file.type == FileType.DIR]
+        files = [file for file in file_list if file.type == FileType.FILE]
+        return self.render_to_response({
+            'dirs': dirs,
+            'files': files,
+        })
 
 
 class FileView(ProtectedTemplateView):
