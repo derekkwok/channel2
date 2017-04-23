@@ -10,3 +10,4 @@ class UserManagerTest(BaseTestCase):
         self.assertTrue(user.check_password('password'))
         self.assertTrue(user.is_staff)
         self.assertTrue(user.is_active)
+        self.assertTrue(user.pk)
