@@ -1,7 +1,8 @@
 from channel2.settings.base import *
 
 ALLOWED_HOSTS = [
-    '10.0.1.8'
+    'local.derekkwok.net',
+    'channel2.derekkwok.net',
 ]
 
 DATABASES = {
