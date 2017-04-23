@@ -94,6 +94,7 @@ def encode(file):
         if os.path.getsize(subtitles) > 0:
             command += ['-vf', 'ass={}'.format(subtitles)]
 
+        # command += ['-c:a', 'aac', '-b:a', '192k']
         command += ['-c:a', 'copy']
         command += ['-threads', '4', output]
         subprocess.call(command) # encode the video!

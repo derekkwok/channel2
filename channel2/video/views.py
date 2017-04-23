@@ -1,5 +1,6 @@
 import os
 from collections import namedtuple
+from datetime import datetime
 
 from django.conf import settings
 from django.http.response import HttpResponseBadRequest, Http404
@@ -11,7 +12,6 @@ from django.views.generic.base import View
 from channel2.base.responses import HttpResponseXAccel
 from channel2.base.views import ProtectedTemplateView
 from channel2.video.models import VideoLink
-
 
 Breadcrumb = namedtuple('Breadcrumb', ['name', 'path'])
 
@@ -28,6 +28,7 @@ class FileInfo:
         self.name = filename
         # Absolute filesystem path to the file.
         filepath = os.path.join(settings.MEDIA_ROOT, path, filename)
+        self.mtime = datetime.fromtimestamp(os.path.getmtime(filepath))
         self.size = os.path.getsize(filepath)
         self.type = self.get_type(filepath)
         self.url = self.get_url(path, filename)

@@ -16,6 +16,7 @@
             <div class="file-item">
                 <a href="{{ f.url }}" class="file-link">{{ f.name }}</a>
                 <div class="file-data">
+                    <span>{{ f.mtime|date }}</span>
                     <span>{{ f.size|filesizeformat }}</span>
                 </div>
             </div>

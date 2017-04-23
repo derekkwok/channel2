@@ -371,11 +371,16 @@ header > * {
 .file-link {
     display: block;
     line-height: 1.2;
+    margin-bottom: 3px;
 }
 
 .file-data {
     color: var(--file-data-color);
     font-size: 12px;
+}
+
+.file-data > span {
+    margin-right: 10px;
 }
 
 .clear {
