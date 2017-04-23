@@ -9,7 +9,7 @@ for _ in range(3):
 
 SECRET_KEY = '%$5mro3hzc9)qn-cp6)cgh4x8!b2=l2&%4o(r^n42%y8273*6-'
 
-DEBUG = True
+DEBUG = False
 
 INSTALLED_APPS = [
     'django.contrib.admin',

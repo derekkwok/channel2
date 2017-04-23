@@ -44,4 +44,5 @@ class Command(BaseCommand):
             return user
 
         self.user = create_user_helper('testuser@example.com')
-        self.staff_user = create_user_helper('staffuser@example.com')
+        self.staff_user = create_user_helper(
+            'staffuser@example.com', is_staff=True)
