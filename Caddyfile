@@ -1,0 +1,11 @@
+:80/static {
+    root G:\channel2\static
+}
+
+:80/media {
+    root G:\public
+}
+
+:80 {
+    proxy / localhost:8000
+}

@@ -1,10 +1,9 @@
 {% import 'macros/forms.html' as forms with context %}
 {% import 'macros/utils.html' as utils with context %}
 
-{% set url_index = url('index') %}
-{% set url_video_anime = url('video:anime') %}
-{% set url_video_current = url('video:current') %}
-{% set url_video_movies = url('video:movies') %}
+{% set url_video_anime = url('directory', args=['anime']) %}
+{% set url_video_current = url('directory', args=['current']) %}
+{% set url_video_movies = url('directory', args=['movies']) %}
 
 {% macro header_link(path, label) %}
     <a class="header-link {{ utils.link_active_starts_with(path) }}" href="{{ path }}">{{ label }}</a>
@@ -12,10 +11,10 @@
 
 <div class="header-mobile">
     <span id="header-mobile-menu-button">&#9776;</span>
-    <a class="header-mobile-logo" href="">Channel 2</a>
+    <a class="header-mobile-logo" href="{{ url_video_current }}">Channel 2</a>
 </div>
 <header id="header">
-    <a class="header-logo" href="{{ url_index }}">Channel 2</a>
+    <a class="header-logo" href="{{ url_video_current }}">Channel 2</a>
     {{ header_link(url_video_current, 'Current') }}
     {{ header_link(url_video_anime, 'Anime') }}
     {{ header_link(url_video_movies, 'Movies') }}

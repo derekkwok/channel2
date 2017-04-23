@@ -2,7 +2,6 @@ import os
 import time
 import warnings
 
-import shutil
 from django.conf import settings
 from django.core.cache import cache
 from django.core.management import call_command
@@ -18,15 +17,12 @@ MEDIA_ROOT_TEST = os.path.join(settings.BASE_DIR, 'media-test')
 class Channel2TestRunner(DiscoverRunner):
 
     def setup_databases(self, **kwargs):
-        os.mkdir(MEDIA_ROOT_TEST)
-        os.mkdir(os.path.join(MEDIA_ROOT_TEST, 'current'))
         db = super().setup_databases(**kwargs)
         call_command('datacreator')
         return db
 
     def teardown_databases(self, old_config, **kwargs):
         super().teardown_databases(old_config, **kwargs)
-        shutil.rmtree(MEDIA_ROOT_TEST, ignore_errors=True)
 
 
 def fast_set_password(self, raw_password):

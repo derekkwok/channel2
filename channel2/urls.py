@@ -1,16 +1,22 @@
-from django.conf.urls import url, include
-from django.views.static import serve
 from django.conf import settings
+from django.conf.urls import url, include
+from django.views.generic.base import RedirectView
+from django.views.static import serve
 
-from channel2.video.views import IndexView
+from channel2.video.views import DirectoryView
 
 urlpatterns = [
-    # Index view.
-    url(r'^$', IndexView.as_view(root='current'), name='index'),
+    # Index URL.
+    url(r'^$', RedirectView.as_view(pattern_name='index')),
+    url(r'^current/$', DirectoryView.as_view(), {'path': 'current'},
+        name='index'),
 
     # Apps.
     url(r'^account/', include('channel2.account.urls', namespace='account')),
     url(r'^video/', include('channel2.video.urls', namespace='video')),
+
+    # Directory view.
+    url(r'^(?P<path>.*)/$', DirectoryView.as_view(), name='directory'),
 ]
 
 if settings.DEBUG:

@@ -2,7 +2,7 @@ import os
 from collections import namedtuple
 
 from django.conf import settings
-from django.http.response import HttpResponseBadRequest
+from django.http.response import HttpResponseBadRequest, Http404
 from django.urls.base import reverse
 
 from channel2.base.views import ProtectedTemplateView
@@ -10,37 +10,28 @@ from channel2.base.views import ProtectedTemplateView
 # A tuple that holds the properties of a file for rendering in templates.
 FileInfo = namedtuple('FileInfo', ['name', 'url', 'size'])
 
-# Character to replace %20 with in the URL. Allows for prettier URLs.
-SPACE_CHAR = '+'
 
+class DirectoryView(ProtectedTemplateView):
 
-class IndexView(ProtectedTemplateView):
-    """Lists files and directories."""
+    template_name = 'video/directory.html'
 
-    # The root directory to serve.
-    root = None
-
-    template_name = 'video/index.html'
-
-    def get(self, request, path=''):
-        """Handles a GET request."""
+    def get(self, request, path):
         if os.path.normpath(path).startswith('..'):
             return HttpResponseBadRequest()
         return self.render_to_response({
-            'files': self.get_files(path),
+            'files': self.get_files(path)
         })
 
     def get_files(self, path):
-        """Gets a list of FileInfo objects for the given path."""
-        path = path.replace(SPACE_CHAR, ' ')
-        fullpath = os.path.join(settings.MEDIA_ROOT, self.root, path)
+        dirpath = os.path.join(settings.MEDIA_ROOT, path)
+        if not os.path.isdir(dirpath):
+            raise Http404
         files = []
-        for filename in os.listdir(fullpath):
-            filepath = os.path.join(path, filename) \
-                .replace(' ', SPACE_CHAR).replace(os.sep, '/').lower()
+        for filename in os.listdir(dirpath):
+            url_path = os.path.join(path, filename)
             file_info = FileInfo(
                 filename,
-                reverse('video:{}'.format(self.root), args=[filepath]),
-                os.path.getsize(os.path.join(fullpath, filename)))
+                reverse('directory', args=[url_path]),
+                os.path.getsize(os.path.join(dirpath, filename)))
             files.append(file_info)
         return files

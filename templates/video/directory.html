@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        {% for f in files %}
+            <li>{{ f.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -4,7 +4,6 @@ from django.conf import settings
 from django.urls.base import reverse
 
 from channel2.base.tests import BaseTestCase
-from channel2.video.views import IndexView
 
 
 class TempFile:
@@ -22,10 +21,10 @@ class TempFile:
             os.remove(self.path)
 
 
-class IndexViewTest(BaseTestCase):
+class DirectoryViewTest(BaseTestCase):
 
-    def get_url(self, path=''):
-        return reverse('video:current', args=[path])
+    def get_url(self, path='current'):
+        return reverse('directory', args=[path])
 
     def test_get_anonymous(self):
         self.client.logout()
@@ -37,7 +36,7 @@ class IndexViewTest(BaseTestCase):
     def test_get(self):
         response = self.client.get(self.get_url())
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'video/index.html')
+        self.assertTemplateUsed(response, 'video/directory.html')
 
     def test_get_bad_path1(self):
         response = self.client.get(self.get_url('..'))
@@ -47,22 +46,10 @@ class IndexViewTest(BaseTestCase):
         response = self.client.get(self.get_url('../'))
         self.assertEqual(response.status_code, 400)
 
-    def test_get_files_empty(self):
-        view = IndexView()
-        view.root = 'current'
-        files = view.get_files('')
-        self.assertEqual(len(files), 0)
+    def test_get_not_found(self):
+        response = self.client.get(self.get_url('bad_path'))
+        self.assertEqual(response.status_code, 404)
 
-    def test_get_files(self):
-        view = IndexView()
-        view.root = 'current'
-        with TempFile('f 1.txt', 'Hello!'), TempFile('f2.txt', 'Something'):
-            files = view.get_files('')
-            self.assertEqual(len(files), 2)
-            filename_to_file = {f.name: f for f in files}
-            file1 = filename_to_file['f 1.txt']
-            self.assertEqual(file1.size, 6)
-            self.assertEqual(file1.url, '/video/current/f+1.txt')
-            file2 = filename_to_file['f2.txt']
-            self.assertEqual(file2.size, 9)
-            self.assertEqual(file2.url, '/video/current/f2.txt')
+    def test_get_not_directory(self):
+        response = self.client.get(self.get_url('current/file1.mp4'))
+        self.assertEqual(response.status_code, 404)

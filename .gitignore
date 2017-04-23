@@ -1,3 +1,4 @@
 .idea
 __pycache__
+caddy.exe
 db.sqlite3
