@@ -8,7 +8,7 @@ from channel2.video.views import DirectoryView
 urlpatterns = [
     # Index URL.
     url(r'^$', RedirectView.as_view(pattern_name='index')),
-    url(r'^current/$', DirectoryView.as_view(), {'path': 'current'},
+    url(r'^Current/$', DirectoryView.as_view(), {'path': 'Current'},
         name='index'),
 
     # Apps.

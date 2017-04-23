@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="breadcrumbs">
+        {% for breadcrumb in breadcrumbs %}
+            <span><a href="/{{ breadcrumb.path }}">{{ breadcrumb.name }}</a></span>
+        {% endfor %}
+    </div>
     <div class="dir-list">
         {% for d in dirs %}
             <a href="{{ d.url }}" class="dir-item">{{ d.name }}</a>
@@ -9,14 +14,10 @@
     <div class="file-list">
         {% for f in files %}
             <div class="file-item">
-                <a href="{{ f.url }}">
-                    <div class="file-preview"></div>
-                </a>
-                <div>
-                    <a href="{{ f.url }}" class="file-link">{{ f.name }}</a>
-                    <span class="file-data">{{ f.size|filesizeformat }}</span>
+                <a href="{{ f.url }}" class="file-link">{{ f.name }}</a>
+                <div class="file-data">
+                    <span>{{ f.size|filesizeformat }}</span>
                 </div>
-                <div class="clear"></div>
             </div>
         {% endfor %}
     </div>

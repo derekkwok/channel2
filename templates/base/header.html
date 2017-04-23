@@ -1,9 +1,9 @@
 {% import 'macros/forms.html' as forms with context %}
 {% import 'macros/utils.html' as utils with context %}
 
-{% set url_video_anime = url('directory', args=['anime']) %}
-{% set url_video_current = url('directory', args=['current']) %}
-{% set url_video_movies = url('directory', args=['movies']) %}
+{% set url_video_anime = url('directory', args=['Anime']) %}
+{% set url_video_current = url('directory', args=['Current']) %}
+{% set url_video_movies = url('directory', args=['Movies']) %}
 
 {% macro header_link(path, label) %}
     <a class="header-link {{ utils.link_active_starts_with(path) }}" href="{{ path }}">{{ label }}</a>

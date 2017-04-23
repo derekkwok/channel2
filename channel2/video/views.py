@@ -1,4 +1,5 @@
 import os
+from collections import namedtuple
 
 from django.conf import settings
 from django.http.response import HttpResponseBadRequest, Http404
@@ -10,6 +11,9 @@ from django.views.generic.base import View
 from channel2.base.responses import HttpResponseXAccel
 from channel2.base.views import ProtectedTemplateView
 from channel2.video.models import VideoLink
+
+
+Breadcrumb = namedtuple('Breadcrumb', ['name', 'path'])
 
 
 class FileType:
@@ -61,13 +65,21 @@ class DirectoryView(ProtectedTemplateView):
 
         file_list = [
             FileInfo(path, filename) for filename in os.listdir(dirpath)]
-        # file info into files and directories.
+        # Split files into files and directories.
         dirs = [file for file in file_list if file.type == FileType.DIR]
         files = [file for file in file_list if file.type == FileType.FILE]
         return self.render_to_response({
+            'breadcrumbs': self.get_breadcrumbs(path),
             'dirs': dirs,
             'files': files,
         })
+
+    def get_breadcrumbs(self, path):
+        breadcrumbs = []
+        parts = path.split('/')
+        for i in range(len(parts)):
+            breadcrumbs.append(Breadcrumb(parts[i], '/'.join(parts[:i + 1])))
+        return breadcrumbs
 
 
 class FileView(ProtectedTemplateView):
