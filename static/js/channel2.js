@@ -10,7 +10,7 @@ class Channel2 {
 
     initializeCastApi() {
         const applicationId = chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID;
-        cast.framework.CastContext.getInstance().setOptions({
+        this.getCastContext().setOptions({
             receiverApplicationId: applicationId,
             autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED,
         });
@@ -34,19 +34,23 @@ class Channel2 {
         }
         e.preventDefault();
         const url = e.target.getAttribute('href');
+        const title = e.target.getAttribute('title');
         const options = {credentials: 'include'};
         fetch(url, options).then((response) => {
-            this.cast(response.url);
+            this.cast(response.url, title);
         });
     }
 
     /**
      * Casts a URL.
      * @param {string} url The video link URL (not the file URL).
+     * @param {string} title The title of the video.
      */
-    cast(url) {
+    cast(url, title) {
         this.session = this.getCastContext().getCurrentSession();
         const mediaInfo = new chrome.cast.media.MediaInfo(url, 'video');
+        mediaInfo.metadata = new chrome.cast.media.MovieMediaMetadata();
+        mediaInfo.metadata.title = title;
         const request = new chrome.cast.media.LoadRequest(mediaInfo);
         this.session.loadMedia(request);
     }

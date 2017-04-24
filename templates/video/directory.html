@@ -14,7 +14,7 @@
     <div class="file-list">
         {% for f in files %}
             <div class="file-item">
-                <a href="{{ f.url }}" class="file-link">{{ f.name }}</a>
+                <a href="{{ f.url }}" title="{{ f.name }}" class="file-link">{{ f.name }}</a>
                 <div class="file-data">
                     <span>{{ f.mtime|date }}</span>
                     <span>{{ f.size|filesizeformat }}</span>
