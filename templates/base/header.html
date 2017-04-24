@@ -10,8 +10,10 @@
 {% endmacro %}
 
 <div class="header-mobile">
-    <span id="header-mobile-menu-button">&#9776;</span>
+    <span id="header-mobile-menu-button"><i class="material-icons">menu</i></span>
     <a class="header-mobile-logo" href="{{ url_video_current }}">Channel 2</a>
+    <div class="flex-space"></div>
+    <button is="google-cast-button" class="google-cast-button"></button>
 </div>
 <header id="header">
     <a class="header-logo" href="{{ url_video_current }}">Channel 2</a>
@@ -19,6 +21,7 @@
     {{ header_link(url_video_anime, 'Anime') }}
     {{ header_link(url_video_movies, 'Movies') }}
     <div class="flex-space"></div>
+    <button is="google-cast-button" class="google-cast-button header-mobile-hidden"></button>
     <span class="header-text">{{ user.email }}</span>
     <a class="header-link" onclick="document.getElementById('logout-form').submit()">Logout</a>
 </header>

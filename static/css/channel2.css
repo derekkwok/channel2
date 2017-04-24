@@ -52,6 +52,7 @@ html, body {
 
 a {
     color: var(--accent1);
+    cursor: pointer;
     text-decoration: none;
 }
 
@@ -246,12 +247,14 @@ header > * {
     #header-mobile-menu-button {
         font-size: 20px;
         height: 50px;
-        line-height: 50px;
         text-align: center;
         width: 50px;
     }
+    #header-mobile-menu-button > i {
+        line-height: 50px;
+    }
     #header-mobile-menu-button.active {
-        background-color: var(--header-link-bg-active);
+        background-color: var(--header-bg);
     }
     .header-mobile-logo {
         font-size: 20px;
@@ -281,6 +284,9 @@ header > * {
         padding: 10px 20px;
     }
     .header-text {
+        display: none;
+    }
+    .header-mobile-hidden {
         display: none;
     }
 }
@@ -385,4 +391,22 @@ header > * {
 
 .clear {
     clear: both;
+}
+
+/* -----------------------------------------------------------------------------
+    Cast control styles.
+----------------------------------------------------------------------------- */
+
+.cast-controls {
+    background-color: #eee;
+    padding: 10px 15px;
+}
+
+.google-cast-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    height: 50px;
+    padding: 12px;
+    width: 50px;
 }
