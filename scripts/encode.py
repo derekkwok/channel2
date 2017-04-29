@@ -23,13 +23,13 @@ PROFILE = 'high'
 PRESET = 'fast'
 
 # Path to FFMPEG binary.
-FFMPEG_PATH = 'G:\\ffmpeg\\bin\\ffmpeg.exe'
+FFMPEG_PATH = 'E:\\ffmpeg\\bin\\ffmpeg.exe'
 
 # Font dir.
-FONT_DIR = 'G:\\ffmpeg\\bin\\fonts'
+FONT_DIR = 'E:\\ffmpeg\\bin\\fonts'
 
 # Font config file.
-FONTCONFIG_FILE = 'G:\\ffmpeg\\fonts.conf'
+FONTCONFIG_FILE = 'E:\\ffmpeg\\fonts.conf'
 
 # ------------------------------------------------------------------------------
 # encoding script
