@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.conf.urls import url, include
+from django.contrib import admin
 from django.views.generic.base import RedirectView
 from django.views.static import serve
 
@@ -13,6 +14,7 @@ urlpatterns = [
 
     # Apps.
     url(r'^account/', include('channel2.account.urls', namespace='account')),
+    url(r'^admin/', admin.site.urls),
     url(r'^video/', include('channel2.video.urls', namespace='video')),
 
     # Directory view.
