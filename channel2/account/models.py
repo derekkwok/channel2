@@ -22,6 +22,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
+    token = models.CharField(max_length=255, blank=True)
 
     class Meta:
         db_table = 'user'

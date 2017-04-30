@@ -6,8 +6,8 @@
     <form action="" method="post" enctype="multipart/form-data">
         {{ forms.non_field_errors(form) }}
         {{ forms.csrf_input() }}
-        {{ forms.field(form.email) }}
-        {{ forms.field(form.password) }}
-        <button>Login</button>
+        {{ forms.field(form.password1) }}
+        {{ forms.field(form.password2) }}
+        <button>Set Password</button>
     </form>
 {% endblock %}
