@@ -4,6 +4,7 @@
 {% set url_video_anime = url('directory', args=['Anime']) %}
 {% set url_video_current = url('directory', args=['Current']) %}
 {% set url_video_movies = url('directory', args=['Movies']) %}
+{% set url_video_tv = url('directory', args=['TV']) %}
 
 {% macro header_link(path, label) %}
     <a class="header-link {{ utils.link_active_starts_with(path) }}" href="{{ path }}">{{ label }}</a>
@@ -20,6 +21,7 @@
     {{ header_link(url_video_current, 'Current') }}
     {{ header_link(url_video_anime, 'Anime') }}
     {{ header_link(url_video_movies, 'Movies') }}
+    {{ header_link(url_video_tv, 'TV') }}
     <div class="flex-space"></div>
     <button is="google-cast-button" class="google-cast-button header-mobile-hidden"></button>
     <span class="header-text">{{ user.email }}</span>
