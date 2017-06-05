@@ -18,11 +18,3 @@
 <form action="{{ url('account:logout') }}" method="post" id="logout-form">
     {{ forms.csrf_input() }}
 </form>
-<script type="text/javascript">
-const header = document.getElementById('header');
-const button = document.getElementById('header-mobile-menu-button');
-button.addEventListener('click', function() {
-    header.classList.toggle('active');
-    button.classList.toggle('active');
-})
-</script>
