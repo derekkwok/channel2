@@ -244,18 +244,6 @@ header > * {
     .header-mobile > * {
         color: var(--header-color);
     }
-    #header-mobile-menu-button {
-        font-size: 20px;
-        height: 50px;
-        text-align: center;
-        width: 50px;
-    }
-    #header-mobile-menu-button > i {
-        line-height: 50px;
-    }
-    #header-mobile-menu-button.active {
-        background-color: var(--header-bg);
-    }
     .header-mobile-logo {
         font-size: 20px;
         padding: 0 10px;

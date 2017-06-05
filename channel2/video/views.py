@@ -55,7 +55,7 @@ class DirectoryView(ProtectedTemplateView):
 
     template_name = 'video/directory.html'
 
-    def get(self, request, path):
+    def get(self, request, path=''):
         if os.path.normpath(path).startswith('..'):
             return HttpResponseBadRequest()
 
@@ -76,7 +76,7 @@ class DirectoryView(ProtectedTemplateView):
         })
 
     def get_breadcrumbs(self, path):
-        breadcrumbs = []
+        breadcrumbs = [Breadcrumb('Channel 2', '')]
         parts = path.split('/')
         for i in range(len(parts)):
             breadcrumbs.append(Breadcrumb(parts[i], '/'.join(parts[:i + 1])))
