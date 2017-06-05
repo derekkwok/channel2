@@ -13,6 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if os.path.exists(TARGET):
             shutil.rmtree(TARGET)
-        shutil.copytree(settings.BASE_DIR, TARGET)
+        ignore = shutil.ignore_patterns('.git', '.idea', '__pycache__')
+        shutil.copytree(settings.BASE_DIR, TARGET, ignore=ignore)
         call_command('migrate', interactive=False)
         call_command('collectstatic', interactive=False)
