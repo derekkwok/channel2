@@ -6,11 +6,16 @@
             <span><a href="/{{ breadcrumb.path }}">{{ breadcrumb.name }}</a></span>
         {% endfor %}
     </div>
-    <div class="dir-list">
-        {% for d in dirs %}
-            <a href="{{ d.url }}" class="dir-item">{{ d.name }}</a>
-        {% endfor %}
-    </div>
+    {% if dirs %}
+        <div class="dir-list">
+            {% for d in dirs %}
+                <a href="{{ d.url }}" class="dir-item">
+                    <i class="material-icons">folder</i>
+                    <span>{{ d.name }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="file-list">
         {% for f in files %}
             <div class="file-item">

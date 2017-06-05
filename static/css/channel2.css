@@ -112,8 +112,9 @@ button, .button {
 ----------------------------------------------------------------------------- */
 
 .content {
-    padding-top: 50px;
+    padding-top: 95px;
 }
+
 .container {
     padding: 20px 5%;
 }
@@ -224,7 +225,7 @@ header > * {
     }
     .header-logo {
         font-size: 20px;
-        padding: 0 20px;
+        padding: 0 15px;
     }
 }
 
@@ -246,35 +247,9 @@ header > * {
     }
     .header-mobile-logo {
         font-size: 20px;
-        padding: 0 10px;
+        padding: 0 15px;
     }
     header {
-        background-color: var(--header-bg);
-        transform: translate3d(-100%, 0, 0);
-        transition: all 300ms;
-        width: 200px;
-
-        position: fixed;
-        top: 50px;
-        bottom: 0;
-        left: 0;
-        z-index: 1000;
-    }
-    header.active {
-        transform: translate3d(0, 0, 0);
-    }
-    .header-logo {
-        display: none;
-    }
-    .header-link {
-        display: block;
-        font-weight: bold;
-        padding: 10px 20px;
-    }
-    .header-text {
-        display: none;
-    }
-    .header-mobile-hidden {
         display: none;
     }
 }
@@ -322,11 +297,16 @@ header > * {
 
 .breadcrumbs {
     background-color: #eee;
-    border-bottom: var(--dir-border);
-    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 10px 15px;
-    text-overflow: ellipsis;
     white-space: nowrap;
+
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
 }
 
 .breadcrumbs > span:after {
@@ -343,10 +323,28 @@ header > * {
     Directory styles.
 ----------------------------------------------------------------------------- */
 
+.dir-list {
+    column-gap: 0;
+    column-width: 300px;
+}
+
 .dir-item {
+    align-items: center;
+    break-inside: avoid-column;
     border-bottom: var(--dir-border);
-    display: block;
+    display: flex;
     padding: 10px 15px;
+}
+
+.dir-item > i {
+    color: #999;
+    margin-right: 10px;
+}
+
+.dir-item > span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .dir-item:hover {
