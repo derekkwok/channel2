@@ -1,1 +1,6 @@
+# Production dependencies.
 Django>=2.1,<2.2
+
+# Development dependencies.
+pylint
+mypy

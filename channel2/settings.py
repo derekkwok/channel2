@@ -1,4 +1,5 @@
 import os
+from typing import List, Text
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -6,7 +7,7 @@ SECRET_KEY = '4y*@!1^$_^$ra*_o*$+@@!bh4dl@fx$n=m0a2qz!x)yc0r6%nh'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List[Text] = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -53,8 +54,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-AUTH_PASSWORD_VALIDATORS = []
 
 LANGUAGE_CODE = 'en-us'
 USE_I18N = True

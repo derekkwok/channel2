@@ -1,0 +1,9 @@
+[MASTER]
+# Ignore auto generated migration files.
+ignore=migrations
+
+[FORMAT]
+max-line-length=100
+
+[MESSAGES CONTROL]
+disable=too-few-public-methods,no-self-use,missing-docstring
