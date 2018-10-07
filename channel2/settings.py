@@ -1,6 +1,8 @@
 import os
 from typing import List, Text
 
+from django.template import context_processors
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '4y*@!1^$_^$ra*_o*$+@@!bh4dl@fx$n=m0a2qz!x)yc0r6%nh'
@@ -30,22 +32,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'channel2.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 WSGI_APPLICATION = 'channel2.wsgi.application'
 
 DATABASES = {
@@ -63,3 +49,14 @@ TIME_ZONE = 'UTC'
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+TEST_RUNNER = 'channel2.test.runner.Channel2TestRunner'
+
+JINJA2_DIRS = [
+    os.path.join(BASE_DIR, 'templates'),
+]
+JINJA2_CONTEXT_PROCESSORS = [
+    context_processors.csrf,
+    context_processors.debug,
+    context_processors.request,
+]
