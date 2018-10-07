@@ -1,10 +1,10 @@
 import re
 from typing import Any, Dict, Text
 
+from django import urls
 from django.conf import settings
 from django.http import request, response
 from django.template import defaultfilters
-from django.urls.base import reverse
 from jinja2 import environment, loaders
 
 _TEMPLATE_ENV = environment.Environment(
@@ -13,7 +13,7 @@ _TEMPLATE_ENV = environment.Environment(
     autoescape=True,
 )
 _TEMPLATE_ENV.globals.update(
-    url=reverse,
+    url=urls.reverse,
 )
 _TEMPLATE_ENV.filters.update(
     date=defaultfilters.date,

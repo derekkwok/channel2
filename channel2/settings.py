@@ -1,6 +1,7 @@
 import os
-from typing import List, Text
+from typing import Callable, List, Text
 
+from django.http import request
 from django.template import context_processors
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,6 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channel2.apps.web',
 ]
 
 MIDDLEWARE = [
@@ -52,10 +55,10 @@ STATIC_URL = '/static/'
 
 TEST_RUNNER = 'channel2.test.runner.Channel2TestRunner'
 
-JINJA2_DIRS = [
+JINJA2_DIRS: List[Text] = [
     os.path.join(BASE_DIR, 'templates'),
 ]
-JINJA2_CONTEXT_PROCESSORS = [
+JINJA2_CONTEXT_PROCESSORS: List[Callable[[request.HttpRequest], None]] = [
     context_processors.csrf,
     context_processors.debug,
     context_processors.request,
