@@ -1,0 +1,3 @@
+channel2.derekkwok.net:80 {
+    root /var/www/channel2.derekkwok.net
+}
