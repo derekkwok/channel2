@@ -9,12 +9,12 @@ echo "
 apt-get update && apt-get -y upgrade
 apt-get install curl
 
-# # Install Caddy.
+# Install Caddy.
 curl https://getcaddy.com | bash -s personal
 
-# # Once the installation is completed, we need to add the 
-# # cap_net_bind_service capability to the Caddy binary. This capability will 
-# # allow the Caddy executable to bind to a port less than 1024.
+# Once the installation is completed, we need to add the
+# cap_net_bind_service capability to the Caddy binary. This capability will
+# allow the Caddy executable to bind to a port less than 1024.
 setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
 # Setup directories.
@@ -24,8 +24,8 @@ mkdir -p /etc/ssl/caddy
 chown -R www-data:root /etc/ssl/caddy
 chmod 0770 /etc/ssl/caddy
 touch /etc/caddy/Caddyfile
-mkdir -p /var/www/channel2.derekkwok.net
-chown www-data: /var/www/channel2.derekkwok.net
+mkdir -p /var/www/channel2/media
+chown www-data: /var/www/channel2/media
 
 # Enable Caddy to start on boot.
 systemctl enable caddy.service
@@ -33,4 +33,7 @@ systemctl enable caddy.service
 # Restart Caddy.
 service caddy stop
 service caddy start
+
+# Setup a python virtual environment.
+python3.6 -m venv /var/www/channel2/venv
 " | ssh channel2-root 'bash -s'

@@ -1,3 +1,10 @@
 channel2.derekkwok.net:80 {
-    root /var/www/channel2.derekkwok.net
+    proxy / localhost:8081 {
+        except /media
+        transparent
+    }
+    internal /media
+    root /var/www/channel2
+    on startup /var/www/channel2/venv/bin/python /var/www/channel2/server/server.py
+    timeouts none
 }
