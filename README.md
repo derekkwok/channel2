@@ -15,3 +15,10 @@ Run the application:
 Run commit checks prior to committing:
 
     (channel2) $ ./scripts/precommit.sh
+
+## Deploying Channel2
+
+Use the following scripts:
+
+    $ ./scripts/deploy-setup.sh
+    $ ./scripts/deploy-update.sh
