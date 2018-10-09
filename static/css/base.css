@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: var(--main-bg);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+}

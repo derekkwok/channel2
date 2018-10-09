@@ -1,0 +1,21 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height);
+}
+
+h1 {
+    font-size: 2em;
+    margin: .5em 0;
+}
+
+p, span {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height);
+}
+
+.secondary {
+    color: var(--text-secondary);
+}
