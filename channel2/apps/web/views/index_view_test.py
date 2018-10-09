@@ -10,4 +10,4 @@ class IndexViewTest(test.TestCase):
     def test_get(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.template_name, 'web/index.html')
+        self.assertEqual(response.template_name, 'web/pages/index.html')

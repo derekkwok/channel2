@@ -6,7 +6,7 @@ from channel2.lib import views
 
 class IndexView(views.TemplateView):
 
-    template_name = 'web/index.html'
+    template_name = 'web/pages/index.html'
 
     def get(self, request: req_module.HttpRequest) -> resp_module.HttpResponse:
         del request  # Unused.

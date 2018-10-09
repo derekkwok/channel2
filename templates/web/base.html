@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans">
+    <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1" defer></script>
+    <title>{% block title %}Channel 2{% endblock %}</title>
+</head>
+<body>
+    {% block body %}
+        <div class="page">
+            {% include 'web/components/nav.html' %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>
