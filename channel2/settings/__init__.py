@@ -2,7 +2,6 @@
 # wildcard-imports.
 # pylint: disable=wildcard-import
 import os
-from .base import *
 
 MODE = os.environ.get('C2_MODE', 'dev')
 print('Working in {} mode'.format(MODE))

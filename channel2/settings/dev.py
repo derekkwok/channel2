@@ -1,5 +1,13 @@
 from typing import List, Text
 
+from .base import *  # pylint: disable=wildcard-import,unused-wildcard-import
+
 DEBUG = True
 
-ALLOWED_HOSTS: List[Text] = []
+STATIC_URL = '/static/'
+STATIC_ROOT = ''
+STATICFILES_DIRS: List[Text] = [
+    os.path.join(BASE_DIR, 'static'),
+]
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

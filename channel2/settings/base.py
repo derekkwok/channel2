@@ -51,8 +51,6 @@ USE_L10N = True
 TIME_ZONE = 'UTC'
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
 TEST_RUNNER = 'channel2.test.runner.Channel2TestRunner'
 
 JINJA2_DIRS: List[Text] = [
