@@ -1,7 +1,7 @@
 @media screen and (max-width: 999px) {
     .nav {
         position: absolute;
-        top: 0;
+        top: var(--nav-bar-height);
         bottom: 0;
         left: 0;
 
@@ -9,6 +9,16 @@
         transition: 300ms ease;
         width: 300px;
         z-index: 1000;
+    }
+    .nav-bar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+
+        align-items: center;
+        display: flex;
+        height: var(--nav-bar-height);
     }
     .nav-active {
         transform: translate3d(0, 0, 0);
@@ -26,6 +36,9 @@
     .nav {
         grid-area: nav;
         min-height: 100vh;
+    }
+    .nav-bar {
+        display: none;
     }
     .content {
         grid-area: content;

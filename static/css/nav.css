@@ -1,3 +1,11 @@
-.nav {
+.nav, .nav-bar {
     background-color: var(--sidebar-bg);
+}
+
+.nav-bar-menu-button {
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    height: 48px;
+    width: 48px;
 }

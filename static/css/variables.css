@@ -12,4 +12,7 @@
 
     --text-primary: #e6e6e6;
     --text-secondary: #bfbfbf;
+
+    /* grid */
+    --nav-bar-height: 50px;
 }
