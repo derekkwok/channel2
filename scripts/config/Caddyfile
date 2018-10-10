@@ -1,6 +1,6 @@
 channel2.derekkwok.net:80 {
     proxy / localhost:8081 {
-        except /media
+        except /media /static
         transparent
     }
     internal /media

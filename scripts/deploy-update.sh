@@ -16,6 +16,12 @@ tar xvf /tmp/channel2.tar -C /var/www/channel2/server
 # Install requirements.
 /var/www/channel2/venv/bin/pip install -r /var/www/channel2/server/requirements.txt
 
+# Collect static files.
+rm -fr /var/www/channel2/static
+mkdir -p /var/www/channel2/static
+chown www-data: /var/www/channel2/static
+C2_MODE=prod /var/www/channel2/venv/bin/python /var/www/channel2/server/manage.py collectstatic --noinput
+
 # Restart Caddy.
 service caddy stop
 service caddy start

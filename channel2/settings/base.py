@@ -13,7 +13,6 @@ SECRET_KEY = '4y*@!1^$_^$ra*_o*$+@@!bh4dl@fx$n=m0a2qz!x)yc0r6%nh'
 DEBUG = False
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
