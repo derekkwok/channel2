@@ -10,9 +10,5 @@ if MODE == 'dev':
     from .dev import *
 elif MODE == 'prod':
     from .prod import *
-elif MODE == 'test':
-    from .test import *
-    import django
-    django.setup()
 else:
     raise RuntimeError('Unknown mode: {}'.format(MODE))
