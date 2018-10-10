@@ -2,10 +2,28 @@
     background-color: var(--sidebar-bg);
 }
 
+.nav {
+    padding: 24px;
+}
+
 .nav-bar-menu-button {
     border: none;
     background: transparent;
     color: var(--text-primary);
     height: 48px;
     width: 48px;
+}
+
+.nav-logo {
+    text-align: center;
+}
+
+.nav-link {
+    align-items: center;
+    display: flex;
+    height: 48px;
+}
+
+.nav-link > .material-icons {
+    margin-right: 12px;
 }
