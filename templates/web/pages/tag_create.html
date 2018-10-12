@@ -1,5 +1,9 @@
 {% extends 'web/base.html' %}
+{% import 'macros/forms.html' as forms with context %}
 
 {% block content %}
     <h1 class="page-title">Add Tag</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ forms.csrf_input() }}
+    </form>
 {% endblock %}
