@@ -20,3 +20,9 @@ class TagTest(test.TestCase):
         self.assertCountEqual(parent1.children.all(), [child1, child2])
         self.assertCountEqual(parent2.children.all(), [child2, child3])
         self.assertCountEqual(child2.parents.all(), [parent1, parent2])
+
+    def test_tag_save_slug(self):
+        tag1 = Tag.objects.create(name='This is a test')
+        tag2 = Tag.objects.create(name='This is a test$')
+        self.assertEqual(tag1.slug, 'this-is-a-test')
+        self.assertEqual(tag2.slug, 'this-is-a-test-1')

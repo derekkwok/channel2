@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200, unique=True)),
-                ('slug', models.CharField(max_length=200, unique=True)),
+                ('slug', models.CharField(max_length=250, unique=True)),
                 ('type', models.CharField(choices=[('anime', 'anime'), ('common', 'common'), ('movie', 'movie'), ('tv', 'tv'), ('season', 'season')], default='common', max_length=20)),
                 ('description', models.TextField(blank=True)),
                 ('created_on', models.DateTimeField(auto_now_add=True)),

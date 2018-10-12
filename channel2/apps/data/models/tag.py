@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class TagType:
@@ -23,7 +24,7 @@ class TagType:
 class Tag(models.Model):
 
     name = models.CharField(max_length=200, unique=True)
-    slug = models.CharField(max_length=200, unique=True)
+    slug = models.CharField(max_length=250, unique=True)
     type = models.CharField(
         max_length=20,
         choices=TagType.choices,
@@ -45,6 +46,14 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        self.slug = slug = slugify(self.name)
+        counter = 1
+        while Tag.objects.filter(slug=self.slug).exclude(id=self.pk).exists():
+            self.slug = '{}-{}'.format(slug, counter)
+            counter += 1
+        super().save(*args, **kwargs)
 
 
 class TagChildren(models.Model):
