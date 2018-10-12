@@ -1,13 +1,17 @@
 @media screen and (max-width: 999px) {
     .nav {
+        --nav-bar-width: 300px;
+
         position: absolute;
         top: var(--nav-bar-height);
         bottom: 0;
-        left: 0;
+        left: calc(-1 * var(--nav-bar-width));
 
-        transform: translate3d(-300px, 0, 0);
+        overflow: auto;
+        padding: 24px 36px;
+        transform: translate3d(0, 0, 0);
         transition: 300ms ease;
-        width: 300px;
+        width: var(--nav-bar-width);
         z-index: 1000;
     }
     .nav-bar {
@@ -21,7 +25,7 @@
         height: var(--nav-bar-height);
     }
     .nav-active {
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(var(--nav-bar-width), 0, 0);
         transition: 300ms ease;
     }
 }
@@ -36,6 +40,8 @@
     .nav {
         grid-area: nav;
         min-height: 100vh;
+        overflow: auto;
+        padding: 24px 48px;
     }
     .nav-bar {
         display: none;

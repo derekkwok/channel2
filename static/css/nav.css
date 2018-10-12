@@ -2,11 +2,6 @@
     background-color: var(--sidebar-bg);
 }
 
-.nav {
-    padding: 24px;
-    overflow: auto;
-}
-
 .nav-bar-menu-button {
     border: none;
     background: transparent;
@@ -16,7 +11,14 @@
     width: 48px;
 }
 
+@media screen and (max-width: 999px) {
+    .nav-logo > h1 {
+        margin: 0.25em 0;
+    }
+}
+
 .nav-logo {
+    display: block;
     text-align: left;
 }
 
