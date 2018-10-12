@@ -4,15 +4,17 @@ from django.utils.text import slugify
 
 class TagType:
 
+    UNKNOWN = 'unknown'  # Unknown tag type.
+
     ANIME = 'anime'  # Anime series.
-    COMMON = 'common'  # Common tag - e.g. genres such as "Action" or "Horror".
+    ANIME_TAG = 'ANIME_TAG'  # Anime tag - e.g. "Action" or "Horror".
     MOVIE = 'movie'  # Movies.
     TV = 'tv'  # TV series.
     SEASON = 'season'  # Season - e.g. "2018 Q4".
 
     choices = (
         (ANIME, ANIME),
-        (COMMON, COMMON),
+        (ANIME_TAG, ANIME_TAG),
         (MOVIE, MOVIE),
         (TV, TV),
         (SEASON, SEASON),
@@ -28,7 +30,7 @@ class Tag(models.Model):
     type = models.CharField(
         max_length=20,
         choices=TagType.choices,
-        default=TagType.COMMON)
+        default=TagType.UNKNOWN)
     description = models.TextField(blank=True)
     children = models.ManyToManyField(
         'self',
