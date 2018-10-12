@@ -42,6 +42,6 @@
     }
     .content {
         grid-area: content;
-        padding: 48px;
+        padding: 24px 48px;
     }
 }

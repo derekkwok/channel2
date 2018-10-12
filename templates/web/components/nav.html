@@ -6,8 +6,8 @@
     </button>
 </div>
 <div class="nav">
-    <h1 class="nav-logo">Channel 2</h1>
-    <a class="nav-link">
+    <a class="nav-logo" href="{{ url('index') }}"><h1>Channel 2</h1></a>
+    <a class="nav-link" href="{{ url('index') }}">
         <i class="material-icons">home</i>
         <span>Home</span>
     </a>
@@ -38,7 +38,7 @@
         <span>TV Shows</span>
     </a>
     <h2 class="nav-header">Admin</h2>
-    <a class="nav-link">
+    <a class="nav-link" href="{{ url('tag.create') }}">
         <i class="material-icons">add_circle</i>
         <span>Add Tag</span>
     </a>
