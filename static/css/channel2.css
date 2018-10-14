@@ -3,6 +3,7 @@
 
 /* Import base styles. */
 @import 'base.css';
+@import 'form.css';
 @import 'grid.css';
 @import 'typography.css';
 

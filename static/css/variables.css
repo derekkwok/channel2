@@ -13,6 +13,8 @@
     --text-primary: #e6e6e6;
     --text-secondary: #bfbfbf;
 
+    --form-input-bg: #1a1a1a;
+
     /* grid */
     --nav-bar-height: 50px;
 }

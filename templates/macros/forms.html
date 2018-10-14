@@ -13,7 +13,7 @@
 {% endmacro %}
 
 {% macro field(field, show_label=False) %}
-    <div class="form-field{% if field.errors %} error{% endif %}">
+    <div class="form-field{% if field.errors %} form-field-error{% endif %}">
         {% if show_label %}
             {{ field.label_tag()|safe }}
         {% endif %}

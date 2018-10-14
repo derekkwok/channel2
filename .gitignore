@@ -1,4 +1,5 @@
 *.pyc
+.idea
 .mypy_cache
 .vscode
 db.sqlite3
