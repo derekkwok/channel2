@@ -7,17 +7,17 @@ class TagType:
     UNKNOWN = 'unknown'  # Unknown tag type.
 
     ANIME = 'anime'  # Anime series.
-    ANIME_SEASON = 'season'  # Season - e.g. "2018 Q4".
-    ANIME_TAG = 'anime_tag'  # Anime tag - e.g. "Action" or "Horror".
+    ANIME_SEASON = 'anime-season'  # Season - e.g. "2018 Q4".
+    ANIME_TAG = 'anime-tag'  # Anime tag - e.g. "Action" or "Horror".
     MOVIE = 'movie'  # Movies.
     TV = 'tv'  # TV series.
 
     choices = (
         (ANIME, 'Anime'),
-        (ANIME_SEASON, 'Anime Season'),
-        (ANIME_TAG, 'Anime Tag'),
-        (MOVIE, 'Movie'),
-        (TV, 'TV'),
+        (ANIME_SEASON, 'Anime Seasons'),
+        (ANIME_TAG, 'Anime Tags'),
+        (MOVIE, 'Movies'),
+        (TV, 'TV Shows'),
     )
 
     d = dict(choices)
