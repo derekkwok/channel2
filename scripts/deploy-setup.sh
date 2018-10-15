@@ -26,6 +26,8 @@ chmod 0770 /etc/ssl/caddy
 touch /etc/caddy/Caddyfile
 mkdir -p /var/www/channel2/media
 chown www-data: /var/www/channel2/media
+mkdir -p /var/www/channel2/db
+chown www-data: /var/www/channel2/db
 
 # Enable Caddy to start on boot.
 systemctl enable caddy.service
