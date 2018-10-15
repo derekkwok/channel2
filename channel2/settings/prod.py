@@ -12,5 +12,5 @@ STATICFILES_DIRS: List[Text] = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_URL = '/media'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/channel2/media'
