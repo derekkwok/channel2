@@ -1,1 +1,1 @@
-from .tag import Tag, TagChildren
+from .tag_model import Tag, TagChildren

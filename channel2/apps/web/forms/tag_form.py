@@ -1,9 +1,10 @@
 from django import forms
 
-from channel2.apps.data.models import tag as tag_module
+from channel2.apps.data.models import tag_model
 
 ERROR_NAME_HAS_COMMA = 'The tag name must not contain a comma.'
 ERROR_MISSING_TAGS = 'Unable to find tag(s): {}.'
+
 
 class TagForm(forms.ModelForm):
 
@@ -30,7 +31,7 @@ class TagForm(forms.ModelForm):
     )
 
     class Meta:
-        model = tag_module.Tag
+        model = tag_model.Tag
         fields = ('name', 'type', 'description')
 
     def __init__(self, *args, **kwargs):
@@ -52,7 +53,7 @@ class TagForm(forms.ModelForm):
             if tag_name:
                 tag_names.add(tag_name)
 
-        tag_models = tag_module.Tag.objects.filter(name__in=tag_names)
+        tag_models = tag_model.Tag.objects.filter(name__in=tag_names)
         missing_tag_names = tag_names - set(t.name for t in tag_models)
         if missing_tag_names:
             error_message = ERROR_MISSING_TAGS.format(', '.join(sorted(missing_tag_names)))
@@ -70,8 +71,8 @@ class TagForm(forms.ModelForm):
         cur_tags = set(tag.children.all())
         new_tags = set(self.children_tag_models)
         for child_tag in cur_tags - new_tags:
-            tag_module.TagChildren.objects.get(parent=tag, child=child_tag).delete()
+            tag_model.TagChildren.objects.get(parent=tag, child=child_tag).delete()
         for child_tag in new_tags - cur_tags:
-            tag_module.TagChildren.objects.create(parent=tag, child=child_tag)
+            tag_model.TagChildren.objects.create(parent=tag, child=child_tag)
 
         return tag
