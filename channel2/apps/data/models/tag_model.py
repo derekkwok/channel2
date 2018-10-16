@@ -2,6 +2,11 @@ from django.db import models
 from django.utils.text import slugify
 
 
+def cover_image_upload_to(instance, filename):
+    del filename  # Unused.
+    return 'cover/{}'.format(instance.slug)
+
+
 class TagType:
 
     UNKNOWN = 'unknown'  # Unknown tag type.
@@ -38,6 +43,7 @@ class Tag(models.Model):
         related_name='parents',
         through='TagChildren',
         through_fields=('parent', 'child'))
+    cover_image = models.FileField(upload_to=cover_image_upload_to, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
