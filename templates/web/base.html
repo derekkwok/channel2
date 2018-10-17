@@ -11,13 +11,14 @@
     <title>{% block title %}Channel 2{% endblock %}</title>
 </head>
 <body>
-    {% block body %}
-        <div class="page">
-            {% include 'web/components/nav.html' %}
-            <div class="content">
-                {% block content %}{% endblock %}
-            </div>
+{% block body %}
+    <div class="page">
+        {% include 'web/components/nav.html' %}
+        <div class="content">
+            {% block content %}{% endblock %}
         </div>
-    {% endblock %}
+    </div>
+{% endblock %}
+{% block javascript %}{% endblock %}
 </body>
 </html>

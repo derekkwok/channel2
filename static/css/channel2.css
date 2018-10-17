@@ -5,6 +5,7 @@
 @import 'base.css';
 @import 'form.css';
 @import 'grid.css';
+@import 'table.css';
 @import 'typography.css';
 
 /* Import component and page styles. */

@@ -2,9 +2,41 @@
 {% import 'macros/forms.html' as forms with context %}
 
 {% block content %}
-    <h1 class="page-title">Add Tag</h1>
-    <form action="" method="post" enctype="multipart/form-data">
-        {{ forms.csrf_input() }}
-        <button>Create Tag</button>
+    <h1 class="page-title">Add Anime</h1>
+    <form id="search-form">
+        <div class="form-field">
+            <input type="text" placeholder="Title" id="query">
+        </div>
+        <button>Search Anime</button>
     </form>
+    <div id="result-table"></div>
+    <template id="template-result-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>ID</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </template>
+    <template id="template-result-row">
+        <tr>
+            <td class="result-title"></td>
+            <td class="result-id"></td>
+            <td>
+                <form class="add-form">
+                    <input type="hidden" name="id">
+                    <button>Add Anime</button>
+                </form>
+            </td>
+        </tr>
+    </template>
+{% endblock %}
+
+{% block javascript %}
+    <script src="/static/js/tag-create-anime.js"></script>
 {% endblock %}
