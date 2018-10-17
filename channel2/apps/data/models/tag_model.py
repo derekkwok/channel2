@@ -37,13 +37,14 @@ class Tag(models.Model):
         choices=TagType.choices,
         default=TagType.UNKNOWN)
     description = models.TextField(blank=True)
+    metadata = models.TextField(blank=True)
     children = models.ManyToManyField(
         'self',
         symmetrical=False,
         related_name='parents',
         through='TagChildren',
         through_fields=('parent', 'child'))
-    cover_image = models.FileField(upload_to=cover_image_upload_to, null=True)
+    cover_image = models.FileField(upload_to=cover_image_upload_to, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
