@@ -10,6 +10,11 @@
         <button>Search Anime</button>
     </form>
     <div id="result-table"></div>
+    <form action="" method="post" id="add-form" class="display-none">
+        {{ forms.csrf_input() }}
+        <input type="text" name="metadata" id="metadata-input">
+    </form>
+    <img src="" id="cover-image">
     <template id="template-result-table">
         <table>
             <thead>
@@ -19,8 +24,7 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-            </tbody>
+            <tbody></tbody>
         </table>
     </template>
     <template id="template-result-row">

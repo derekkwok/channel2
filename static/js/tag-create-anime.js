@@ -12,6 +12,8 @@ function addAnime(event) {
 }
 
 function handleAddAnimeResponse(json) {
+    document.getElementById('metadata-input').value = JSON.stringify(json.data);
+    document.getElementById('add-form').submit();
 }
 
 function search(event) {
