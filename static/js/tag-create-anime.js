@@ -1,18 +1,8 @@
 const RESULT_TABLE_TEMPLATE = document.getElementById('template-result-table').content;
 const RESULT_ROW_TEMPLATE = document.getElementById('template-result-row').content;
 
-function addAnime(event) {
-    event.preventDefault();
-    const id = event.target.querySelector('input[name="id"]').value;
-
-    // Fetch the anime data from kitsu.io.
-    fetch(`https://kitsu.io/api/edge/anime/${id}`)
-        .then((response) => response.json())
-        .then((json) => { handleAddAnimeResponse(json); })
-}
-
-function handleAddAnimeResponse(json) {
-    document.getElementById('metadata-input').value = JSON.stringify(json.data);
+function addAnime(kitsuId) {
+    document.getElementById('kitsu-id').value = kitsuId;
     document.getElementById('add-form').submit();
 }
 
@@ -52,11 +42,7 @@ function handleSearchResponse(json) {
         const tableRow = document.importNode(RESULT_ROW_TEMPLATE, true);
         tableRow.querySelector('.result-title').textContent = data.attributes.canonicalTitle;
         tableRow.querySelector('.result-id').textContent = data.id;
-
-        // Create the "add" form. Submitting this form triggers the "addAnime()" function.
-        const addForm = tableRow.querySelector('.add-form');
-        addForm.onsubmit = addAnime;
-        addForm.querySelector('input[name="id"]').value = data.id;
+        tableRow.querySelector('.result-add-button').onclick = () => { addAnime(data.id); };
 
         // Add the row to the table body.
         tableBodyDiv.appendChild(tableRow);

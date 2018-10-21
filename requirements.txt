@@ -1,6 +1,7 @@
 # Production dependencies.
 Django>=2.1,<2.2
 Jinja2>=2.10,<2.11
+requests
 
 # Development dependencies.
 pylint

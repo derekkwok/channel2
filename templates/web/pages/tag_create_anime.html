@@ -12,7 +12,7 @@
     <div id="result-table"></div>
     <form action="" method="post" id="add-form" class="display-none">
         {{ forms.csrf_input() }}
-        <input type="text" name="metadata" id="metadata-input">
+        <input type="text" name="kitsu_id" id="kitsu-id">
     </form>
     <img src="" id="cover-image">
     <template id="template-result-table">
@@ -32,10 +32,7 @@
             <td class="result-title"></td>
             <td class="result-id"></td>
             <td>
-                <form class="add-form">
-                    <input type="hidden" name="id">
-                    <button>Add</button>
-                </form>
+                <button class="result-add-button">Add</button>
             </td>
         </tr>
     </template>
