@@ -3,4 +3,13 @@
 {% block content %}
     <h1 class="page-title">{{ tag_type_description }}</h1>
     <p>{{ tags|length }} results</p>
+    <ul>
+        {% for tag in tags %}
+            <li>
+                <a href="{{ url('tag', args=[tag.pk, tag.slug]) }}">
+                    <span>{{ tag.name }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
