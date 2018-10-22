@@ -5,8 +5,8 @@ from typing import List, Text
 from django import forms
 from django.core.files.base import ContentFile
 
-from channel2.apps.data.gateways import kitsu_gateway
 from channel2.apps.data.models import tag_model
+from channel2.gateways import kitsu_gateway
 from channel2.lib import download_lib
 
 ERROR_TAG_EXISTS = '{} already exists.'

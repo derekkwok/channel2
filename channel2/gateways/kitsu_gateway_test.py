@@ -3,7 +3,7 @@ from unittest import mock
 import requests
 from django import test
 
-from channel2.apps.data.gateways import kitsu_gateway
+from channel2.gateways import kitsu_gateway
 
 
 def _create_response(data):
