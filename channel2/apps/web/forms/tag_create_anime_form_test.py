@@ -23,7 +23,8 @@ class TagCreateAnimeFormTest(test.TestCase):
                 'synopsis': 'Some description of the show.',
                 'posterImage': {
                     'original': 'some/path/to/an/image/file.png',
-                }
+                },
+                'startDate': '2018-04-03',
             },
         }
         self.get_genre_data = mock.patch.object(
@@ -49,6 +50,10 @@ class TagCreateAnimeFormTest(test.TestCase):
         self.assertEqual(tag.cover_image.name, 'cover/tag/cowboy-bepop.jpg')
         self.get_anime_data.assert_called_once_with(kitsu_id)
         self.get_genre_data.assert_called_once_with(kitsu_id)
+        # tag.refresh_from_db()
+        self.assertCountEqual(
+            set(tag.parents.values_list('name', flat=True)),
+            {'Comedy', 'Sci-Fi', '2018 Q2'})
 
     def test_save_tag_already_exists(self):
         tag_model.Tag.objects.create(name='Cowboy Bepop')
