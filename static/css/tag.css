@@ -1,0 +1,31 @@
+.tag-parent-list {
+    list-style-type: none;
+    margin: -12px -4px -4px;
+    padding: 0;
+}
+
+.tag-parent {
+    display: inline-block;
+}
+
+.tag-parent-link {
+    background-color: #333333;
+    border-radius: 3px;
+    font-size: 14px;
+    display: block;
+    margin: 4px;
+    padding: 4px 8px;
+}
+
+.tag-child-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tag-child-item {
+    display: block;
+}
+
+.tag-child-link {
+    display: block;
+}

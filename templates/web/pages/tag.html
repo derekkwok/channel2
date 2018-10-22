@@ -2,4 +2,22 @@
 
 {% block content %}
     <h1 class="page-title">{{ tag.name }}</h1>
+    {% if tag_parents %}
+        <ul class="tag-parent-list">
+            {% for ptag in tag_parents %}
+                <li class="tag-parent">
+                    <a href="{{ url('tag', args=[ptag.pk, ptag.slug]) }}" class="tag-parent-link">{{ ptag.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if tag_children %}
+        <ul class="tag-child-list">
+            {% for ctag in tag_children %}
+                <li class="tag-child-item">
+                    <a href="{{ url('tag', args=[ctag.pk, ctag.slug]) }}" class="tag-child-link">{{ ctag.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

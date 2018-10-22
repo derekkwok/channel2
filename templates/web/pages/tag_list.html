@@ -2,13 +2,10 @@
 
 {% block content %}
     <h1 class="page-title">{{ tag_type_description }}</h1>
-    <p>{{ tags|length }} results</p>
-    <ul>
+    <ul class="tag-child-list">
         {% for tag in tags %}
-            <li>
-                <a href="{{ url('tag', args=[tag.pk, tag.slug]) }}">
-                    <span>{{ tag.name }}</span>
-                </a>
+            <li class="tag-child-item">
+                <a href="{{ url('tag', args=[tag.pk, tag.slug]) }}" class="tag-child-link">{{ tag.name }}</a>
             </li>
         {% endfor %}
     </ul>

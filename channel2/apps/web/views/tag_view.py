@@ -22,4 +22,6 @@ class TagView(views.TemplateView):
             return shortcuts.redirect('tag', tag_pk=tag_pk, tag_slug=tag.slug)
         return self.render_to_response({
             'tag': tag,
+            'tag_children': tag.children.all().order_by('name'),
+            'tag_parents': tag.parents.all().order_by('name'),
         })

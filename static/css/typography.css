@@ -9,7 +9,7 @@ h1 {
     margin: .5em 0;
 }
 
-p, span {
+a, p, span {
     font-family: var(--font-family);
     font-size: var(--font-size);
     font-weight: var(--font-weight-normal);
