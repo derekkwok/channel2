@@ -3,8 +3,8 @@ from django.utils.text import slugify
 
 
 def cover_image_upload_to(instance, filename):
-    del filename  # Unused.
-    return 'cover/{}'.format(instance.slug)
+    del instance  # Unused.
+    return 'cover/tag/{}'.format(filename)
 
 
 class TagType:

@@ -3,3 +3,4 @@
 .mypy_cache
 .vscode
 db.sqlite3
+media

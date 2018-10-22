@@ -1,12 +1,16 @@
+import tempfile
 from unittest import mock
 
 from django import test
+from django.test import override_settings
 
 from channel2.apps.data.gateways import kitsu_gateway
 from channel2.apps.data.models import tag_model
 from channel2.apps.web.forms import tag_create_anime_form
+from channel2.lib import download_lib
 
 
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class TagCreateAnimeFormTest(test.TestCase):
 
     def setUp(self):
@@ -17,6 +21,9 @@ class TagCreateAnimeFormTest(test.TestCase):
             'attributes': {
                 'canonicalTitle': 'Cowboy Bepop',
                 'synopsis': 'Some description of the show.',
+                'posterImage': {
+                    'original': 'some/path/to/an/image/file.png',
+                }
             },
         }
         self.get_genre_data = mock.patch.object(
@@ -25,6 +32,9 @@ class TagCreateAnimeFormTest(test.TestCase):
             {'attributes': {'name': 'Comedy'}},
             {'attributes': {'name': 'Sci-Fi'}},
         ]
+        self.download_file = mock.patch.object(
+            download_lib, 'download_file', autospec=True).start()
+        self.download_file.return_value = download_lib.FileData(b'Hello World!', 'jpg')
         self.addCleanup(mock.patch.stopall)
 
     def test_save(self):
@@ -36,6 +46,7 @@ class TagCreateAnimeFormTest(test.TestCase):
         self.assertEqual(tag.name, 'Cowboy Bepop')
         self.assertEqual(tag.type, tag_model.TagType.ANIME)
         self.assertEqual(tag.description, 'Some description of the show.')
+        self.assertEqual(tag.cover_image.name, 'cover/tag/cowboy-bepop.jpg')
         self.get_anime_data.assert_called_once_with(kitsu_id)
         self.get_genre_data.assert_called_once_with(kitsu_id)
 
@@ -53,7 +64,6 @@ class TagCreateAnimeFormTest(test.TestCase):
     def test_create_anime_tags(self):
         tag_model.Tag.objects.create(name='Comedy')
         self.assertFalse(tag_model.Tag.objects.filter(name='Sci-Fi').exists())
-
         kitsu_id = '103'
         tags = tag_create_anime_form.create_anime_tags(kitsu_id)
         self.assertCountEqual(tag_model.Tag.objects.filter(name__in=['Comedy', 'Sci-Fi']), tags)
