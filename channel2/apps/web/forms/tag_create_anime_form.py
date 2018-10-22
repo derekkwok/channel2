@@ -39,7 +39,7 @@ class TagCreateAnimeForm(forms.Form):
         self.genres: List[tag_model.Tag] = []
         self.seasons: List[tag_model.Tag] = []
 
-    def clean_kitsu_id(self):
+    def clean_kitsu_id(self) -> Text:
         kitsu_id = self.cleaned_data.get('kitsu_id')
         data = kitsu_gateway.get_anime_data(kitsu_id)
 
@@ -58,8 +58,9 @@ class TagCreateAnimeForm(forms.Form):
         self.tag.description = data['attributes']['synopsis']
         self.genres = create_anime_tags(kitsu_id)
         self.seasons = create_season_tags(data['attributes']['startDate'])
+        return kitsu_id
 
-    def save(self, commit=True):
+    def save(self, commit=True) -> tag_model.Tag:
         if not commit:
             return self.tag
 

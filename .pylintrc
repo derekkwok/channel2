@@ -6,4 +6,4 @@ ignore=migrations
 max-line-length=100
 
 [MESSAGES CONTROL]
-disable=too-few-public-methods,no-self-use,missing-docstring
+disable=too-few-public-methods,no-self-use,missing-docstring,duplicate-code

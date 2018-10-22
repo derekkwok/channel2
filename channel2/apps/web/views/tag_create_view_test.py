@@ -25,4 +25,5 @@ class TagCreateViewTest(test.TestCase):
             'type': tag_model.TagType.ANIME
         })
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, self.url)
+        tag = tag_model.Tag.objects.get(name='New Tag')
+        self.assertRedirects(response, urls.reverse('tag', args=[tag.pk, tag.slug]))

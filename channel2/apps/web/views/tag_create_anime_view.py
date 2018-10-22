@@ -1,3 +1,4 @@
+from django import shortcuts
 from django.http import request as req_module
 from django.http import response as resp_module
 
@@ -19,8 +20,8 @@ class TagCreateAnimeView(views.TemplateView):
     def post(self, request: req_module.HttpRequest) -> resp_module.HttpResponse:
         form = tag_create_anime_form.TagCreateAnimeForm(data=request.POST)
         if form.is_valid():
-            form.save()
-            return self.render_to_response({})
+            tag = form.save()
+            return shortcuts.redirect('tag', tag_pk=tag.pk, tag_slug=tag.slug)
         return self.render_to_response({
             'form': form,
         })
