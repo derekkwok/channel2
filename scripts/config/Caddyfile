@@ -3,7 +3,6 @@ channel2.derekkwok.net:80 {
         except /media /static
         transparent
     }
-    internal /media
     root /var/www/channel2
     on startup /var/www/channel2/venv/bin/python /var/www/channel2/server/server.py
     timeouts none

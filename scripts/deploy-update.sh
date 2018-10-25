@@ -22,6 +22,7 @@ mkdir -p /var/www/channel2/static
 chown www-data: /var/www/channel2/static
 C2_MODE=prod /var/www/channel2/venv/bin/python /var/www/channel2/server/manage.py collectstatic --noinput
 C2_MODE=prod /var/www/channel2/venv/bin/python /var/www/channel2/server/manage.py migrate --noinput
+chown www-data: /var/www/channel2/db/db.sqlite3
 
 # Restart Caddy.
 service caddy stop
