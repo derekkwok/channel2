@@ -4,7 +4,7 @@ from django import shortcuts
 from django.http import request as req_module
 from django.http import response as resp_module
 
-from channel2.apps.data.models import tag_model
+from channel2.apps.data.models import tag_model, video_model
 from channel2.lib import views
 
 
@@ -24,4 +24,16 @@ class TagView(views.TemplateView):
             'tag': tag,
             'tag_children': tag.children.all().order_by('name'),
             'tag_parents': tag.parents.all().order_by('name'),
+            'videos': video_model.Video.objects.filter(tag=tag).order_by('name'),
         })
+
+    def post(
+            self,
+            request: req_module.HttpRequest,
+            tag_pk: int,
+            tag_slug: Text) -> resp_module.HttpResponse:
+        del tag_slug  # Unused.
+        tag = tag_model.Tag.objects.get(pk=tag_pk)
+        for file in request.FILES.getlist('files'):
+            video_model.Video.objects.create(name=file.name, file=file, tag=tag)
+        return shortcuts.redirect('tag', tag_pk=tag_pk, tag_slug=tag.slug)

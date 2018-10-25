@@ -1,4 +1,5 @@
 {% extends 'web/base.html' %}
+{% import 'macros/forms.html' as forms with context %}
 
 {% block content %}
     <h1 class="page-title">{{ tag.name }}</h1>
@@ -16,6 +17,32 @@
             {% for ctag in tag_children %}
                 <li class="tag-child-item">
                     <a href="{{ url('tag', args=[ctag.pk, ctag.slug]) }}" class="tag-child-link">{{ ctag.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if 'upload' in request.GET %}
+        <form action="" method="post" enctype="multipart/form-data" id="upload-form">
+            {{ forms.csrf_input() }}
+            <div class="form-field">
+                <input type="file" name="files" multiple>
+            </div>
+            <div class="form-field">
+                <button>Upload</button>
+            </div>
+        </form>
+    {% endif %}
+    {% if tag.cover_image %}
+        <img src="{{ tag.cover_image.url }}" class="tag-cover-image">
+    {% endif %}
+    {% if tag.description %}
+        <p>{{ tag.description }}</p>
+    {% endif %}
+    {% if videos %}
+        <ul class="tag-video-list">
+            {% for video in videos %}
+                <li>
+                    <a href="{{ video.file.url }}">{{ video.name }}</a>
                 </li>
             {% endfor %}
         </ul>

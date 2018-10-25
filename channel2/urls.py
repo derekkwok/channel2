@@ -1,6 +1,7 @@
 from typing import List
 
 from django import urls
+from django.conf import settings
 
 from channel2.apps.data.models import tag_model
 from channel2.apps.web.views.index_view import IndexView
@@ -25,3 +26,7 @@ for tag_type in tag_model.TagType.d:
         r'^tag/list/{}/$'.format(tag_type),
         TagListView.as_view(tag_type=tag_type),
         name='tag.list.{}'.format(tag_type)))
+
+if settings.DEBUG:
+    from django.conf.urls.static import static  # pylint: disable=ungrouped-imports
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
