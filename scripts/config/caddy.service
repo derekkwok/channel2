@@ -6,7 +6,7 @@ Wants=network-online.target
 
 [Service]
 Restart=on-failure
-StartLimitInterval=86400
+StartLimitInterval=60
 StartLimitBurst=5
 
 User=www-data
