@@ -42,6 +42,9 @@
         <ul class="tag-video-list">
             {% for video in videos %}
                 <li>
+                    <a href="intent:http://channel2.derekkwok.net{{ video.file.url }}#Intent;package=com.mxtech.videoplayer.pro;end">
+                        <i class="material-icons">android</i>
+                    </a>
                     <a href="{{ video.file.url }}">{{ video.name }}</a>
                 </li>
             {% endfor %}
