@@ -42,10 +42,10 @@
         <ul class="tag-video-list">
             {% for video in videos %}
                 <li>
-                    <a href="intent:http://channel2.derekkwok.net{{ video.file.url }}#Intent;package=com.mxtech.videoplayer.pro;end">
-                        <i class="material-icons">android</i>
+                    <a href="{{ video.file.url }}" class="tag-video-link">{{ video.name }}</a>
+                    <a href="intent:http://channel2.derekkwok.net{{ video.file.url }}#Intent;package=com.mxtech.videoplayer.pro;end" class="tag-video-link-mx">
+                        <span class="secondary">MX Player Pro</span>
                     </a>
-                    <a href="{{ video.file.url }}">{{ video.name }}</a>
                 </li>
             {% endfor %}
         </ul>

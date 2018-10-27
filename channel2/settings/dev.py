@@ -1,8 +1,8 @@
-from typing import List, Text
-
 from .base import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
 DEBUG = True
+
+ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = ''

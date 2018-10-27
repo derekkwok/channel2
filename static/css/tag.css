@@ -38,6 +38,22 @@
 }
 
 .tag-video-list {
-    display: block;
     clear: both;
+    display: block;
+    list-style-type: none;
+    padding: 0;
+}
+
+.tag-video-list > li {
+    border-top: 1px dashed #333333;
+    padding: 12px 0;
+}
+
+.tag-video-link {
+    display: block;
+}
+
+.tag-video-link-mx {
+    display: block;
+    font-size: 12px;
 }

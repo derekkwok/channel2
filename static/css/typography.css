@@ -11,7 +11,7 @@ h1 {
 
 a, p, span {
     font-family: var(--font-family);
-    font-size: var(--font-size);
+    font-size: inherit;
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height);
 }
