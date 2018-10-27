@@ -5,7 +5,7 @@ from django.http import request as req_module
 from django.http import response as resp_module
 
 from channel2.apps.data.models import tag_model, video_model
-from channel2.lib import views
+from channel2.lib import views, file_lib
 
 
 class TagView(views.TemplateView):
@@ -35,5 +35,5 @@ class TagView(views.TemplateView):
         del tag_slug  # Unused.
         tag = tag_model.Tag.objects.get(pk=tag_pk)
         for file in request.FILES.getlist('files'):
-            video_model.Video.objects.create(name=file.name, file=file, tag=tag)
+            file_lib.create_video(file, tag)
         return shortcuts.redirect('tag', tag_pk=tag_pk, tag_slug=tag.slug)
