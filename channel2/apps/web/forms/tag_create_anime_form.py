@@ -7,7 +7,7 @@ from django.core.files.base import ContentFile
 
 from channel2.apps.data.models import tag_model
 from channel2.gateways import kitsu_gateway
-from channel2.lib import download_lib, constants
+from channel2.lib import download_lib
 
 ERROR_TAG_EXISTS = '{} already exists.'
 
@@ -76,7 +76,7 @@ def create_anime_tags(kitsu_id: Text) -> List[tag_model.Tag]:
 
 def create_season_tags(start_date_str: Text) -> List[tag_model.Tag]:
     start_date = datetime.datetime.strptime(start_date_str, '%Y-%m-%d')
-    tag_name = '{} {}'.format(start_date.year, constants.MONTH_TO_QUARTER[start_date.month])
+    tag_name = tag_model.get_anime_season_name(start_date)
     tag = tag_model.Tag.objects.get_or_create(
         name=tag_name,
         type=tag_model.TagType.ANIME_SEASON)[0]

@@ -1,5 +1,16 @@
+import datetime
+from typing import Text
+
 from django.db import models
 from django.utils.text import slugify
+
+from channel2.lib import constants
+
+
+def get_anime_season_name(timestamp: datetime.datetime) -> Text:
+    return '{} {}'.format(
+        timestamp.year,
+        constants.MONTH_TO_QUARTER[timestamp.month])
 
 
 def cover_image_upload_to(instance, filename):

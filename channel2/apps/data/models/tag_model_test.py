@@ -1,3 +1,5 @@
+import datetime
+
 from django import test
 
 from channel2.apps.data.models import tag_model
@@ -26,3 +28,9 @@ class TagTest(test.TestCase):
         tag2 = tag_model.Tag.objects.create(name='This is a test$')
         self.assertEqual(tag1.slug, 'this-is-a-test')
         self.assertEqual(tag2.slug, 'this-is-a-test-1')
+
+    def test_get_anime_season_name(self):
+        timestamp = datetime.datetime(2018, 10, 28)
+        self.assertEqual(
+            '2018 Q4',
+            tag_model.get_anime_season_name(timestamp))

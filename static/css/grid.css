@@ -47,6 +47,8 @@
         min-height: 100vh;
         overflow: auto;
         padding: 24px 48px;
+        position: fixed;
+        width: 300px;
     }
     .nav-bar {
         display: none;
