@@ -14,7 +14,9 @@ class IndexView(views.TemplateView):
     def get(self, request: req_module.HttpRequest) -> resp_module.HttpResponse:
         del request  # Unused.
         tag_name = tag_model.get_anime_season_name(datetime.datetime.now())
-        tag = tag_model.Tag.objects.get_or_create(name=tag_name)[0]
+        tag = tag_model.Tag.objects.get_or_create(
+            name=tag_name,
+            type=tag_model.TagType.ANIME_SEASON)[0]
         return self.render_to_response({
             'tags': tag.children.all().order_by('name'),
         })
