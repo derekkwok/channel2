@@ -7,25 +7,9 @@ from django.core.files.base import ContentFile
 
 from channel2.apps.data.models import tag_model
 from channel2.gateways import kitsu_gateway
-from channel2.lib import download_lib
+from channel2.lib import download_lib, constants
 
 ERROR_TAG_EXISTS = '{} already exists.'
-
-# Mapping form month to quarter.
-MONTH_TO_QUARTER = {
-    1: 'Q1',
-    2: 'Q1',
-    3: 'Q1',
-    4: 'Q2',
-    5: 'Q2',
-    6: 'Q2',
-    7: 'Q3',
-    8: 'Q3',
-    9: 'Q3',
-    10: 'Q4',
-    11: 'Q4',
-    12: 'Q4',
-}
 
 
 class TagCreateAnimeForm(forms.Form):
@@ -92,7 +76,7 @@ def create_anime_tags(kitsu_id: Text) -> List[tag_model.Tag]:
 
 def create_season_tags(start_date_str: Text) -> List[tag_model.Tag]:
     start_date = datetime.datetime.strptime(start_date_str, '%Y-%m-%d')
-    tag_name = '{} {}'.format(start_date.year, MONTH_TO_QUARTER[start_date.month])
+    tag_name = '{} {}'.format(start_date.year, constants.MONTH_TO_QUARTER[start_date.month])
     tag = tag_model.Tag.objects.get_or_create(
         name=tag_name,
         type=tag_model.TagType.ANIME_SEASON)[0]
