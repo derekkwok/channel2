@@ -3,11 +3,15 @@
 }
 
 .nav-bar-menu-button {
+    align-items: center;
     border: none;
     background: transparent;
     color: var(--text-primary);
+    display: flex;
     height: 48px;
+    justify-content: center;
     outline: none;
+    text-align: center;
     width: 48px;
 }
 

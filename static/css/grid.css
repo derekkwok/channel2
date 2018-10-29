@@ -40,7 +40,6 @@
         grid-template-columns: 300px auto;
         grid-template-rows: auto;
         grid-template-areas: "nav content";
-        max-width: 1440px;
     }
     .nav {
         grid-area: nav;
