@@ -1,7 +1,7 @@
 from django import forms, test
 
 from channel2.apps.data.models import tag_model
-from channel2.apps.web.forms import tag_form
+from channel2.forms import tag_form
 
 
 class TagFormTest(test.TestCase):

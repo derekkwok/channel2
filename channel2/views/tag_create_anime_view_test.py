@@ -3,7 +3,7 @@ from unittest import mock
 from django import test, urls
 
 from channel2.apps.data.models import tag_model
-from channel2.apps.web.forms import tag_create_anime_form
+from channel2.forms import tag_create_anime_form
 
 
 class TagCreateViewAnimeTest(test.TestCase):

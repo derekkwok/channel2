@@ -2,7 +2,7 @@ from django import shortcuts
 from django.http import request as req_module
 from django.http import response as resp_module
 
-from channel2.apps.web.forms import tag_create_anime_form
+from channel2.forms import tag_create_anime_form
 from channel2.lib import views
 
 
