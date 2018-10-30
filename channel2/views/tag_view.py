@@ -4,7 +4,8 @@ from django import shortcuts
 from django.http import request as req_module
 from django.http import response as resp_module
 
-from channel2.apps.data.models import tag_model, video_model
+from channel2.data.models import video_model
+from channel2.data.models import tag_model
 from channel2.lib import views, file_lib
 
 

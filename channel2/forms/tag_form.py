@@ -1,6 +1,6 @@
 from django import forms
 
-from channel2.apps.data.models import tag_model
+from channel2.data.models import tag_model
 
 ERROR_NAME_HAS_COMMA = 'The tag name must not contain a comma.'
 ERROR_MISSING_TAGS = 'Unable to find tag(s): {}.'

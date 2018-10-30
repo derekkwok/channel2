@@ -3,7 +3,8 @@ import os
 from django.conf import settings
 from django.core import files
 
-from channel2.apps.data.models import tag_model, video_model
+from channel2.data.models import video_model
+from channel2.data.models import tag_model
 
 
 def create_video(

@@ -3,7 +3,7 @@ from typing import List
 from django import urls
 from django.conf import settings
 
-from channel2.apps.data.models import tag_model
+from channel2.data.models import tag_model
 from channel2.views.index_view import IndexView
 from channel2.views.tag_create_anime_view import TagCreateAnimeView
 from channel2.views.tag_create_view import TagCreateView

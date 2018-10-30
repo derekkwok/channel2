@@ -1,7 +1,8 @@
 from django import test
 from django.db.models import deletion
 
-from channel2.apps.data.models import video_model, tag_model
+from channel2.data.models import video_model
+from channel2.data.models import tag_model
 
 
 class VideoTest(test.TestCase):

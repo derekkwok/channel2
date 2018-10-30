@@ -1,6 +1,6 @@
 from django import test, urls
 
-from channel2.apps.data.models import tag_model
+from channel2.data.models import tag_model
 
 
 class TagListViewTest(test.TestCase):

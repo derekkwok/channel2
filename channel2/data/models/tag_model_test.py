@@ -2,7 +2,7 @@ import datetime
 
 from django import test
 
-from channel2.apps.data.models import tag_model
+from channel2.data.models import tag_model
 
 
 class TagTest(test.TestCase):

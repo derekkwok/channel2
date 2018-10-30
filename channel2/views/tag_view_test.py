@@ -4,7 +4,8 @@ from django import test, urls
 from django.core.files import uploadedfile
 from django.test import override_settings
 
-from channel2.apps.data.models import tag_model, video_model
+from channel2.data.models import video_model
+from channel2.data.models import tag_model
 
 
 @override_settings(MEDIA_ROOT=tempfile.mkdtemp())

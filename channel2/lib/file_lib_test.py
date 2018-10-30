@@ -5,7 +5,7 @@ from django import test
 from django.core.files import uploadedfile
 from django.test import override_settings
 
-from channel2.apps.data.models import tag_model
+from channel2.data.models import tag_model
 from channel2.lib import file_lib
 
 

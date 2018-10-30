@@ -4,7 +4,7 @@ from unittest import mock
 from django import test
 from django.test import override_settings
 
-from channel2.apps.data.models import tag_model
+from channel2.data.models import tag_model
 from channel2.forms import tag_create_anime_form
 from channel2.gateways import kitsu_gateway
 from channel2.lib import download_lib
