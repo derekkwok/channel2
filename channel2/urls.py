@@ -12,6 +12,7 @@ from channel2.views.tag_edit_view import TagEditView
 from channel2.views.tag_list_view import TagListView
 from channel2.views.tag_view import TagView
 
+# pylint: disable=line-too-long
 urlpatterns: List = [
     urls.re_path(r'^$', IndexView.as_view(), name='index'),
 
@@ -22,6 +23,7 @@ urlpatterns: List = [
     urls.re_path(r'^tag/(?P<tag_pk>\d+)/(?P<tag_slug>[\w-]+)/delete/$', TagDeleteView.as_view(), name='tag.delete'),
     urls.re_path(r'^tag/(?P<tag_pk>\d+)/(?P<tag_slug>[\w-]+)/edit/$', TagEditView.as_view(), name='tag.edit'),
 ]
+# pylint: enable=line-too-long
 
 
 # Create tag type views.
