@@ -8,6 +8,7 @@ from channel2.views.index_view import IndexView
 from channel2.views.tag_create_anime_view import TagCreateAnimeView
 from channel2.views.tag_create_view import TagCreateView
 from channel2.views.tag_delete_view import TagDeleteView
+from channel2.views.tag_edit_view import TagEditView
 from channel2.views.tag_list_view import TagListView
 from channel2.views.tag_view import TagView
 
@@ -19,6 +20,7 @@ urlpatterns: List = [
     urls.re_path(r'^tag/create/anime/$', TagCreateAnimeView.as_view(), name='tag.create.anime'),
     urls.re_path(r'^tag/(?P<tag_pk>\d+)/(?P<tag_slug>[\w-]+)/$', TagView.as_view(), name='tag'),
     urls.re_path(r'^tag/(?P<tag_pk>\d+)/(?P<tag_slug>[\w-]+)/delete/$', TagDeleteView.as_view(), name='tag.delete'),
+    urls.re_path(r'^tag/(?P<tag_pk>\d+)/(?P<tag_slug>[\w-]+)/edit/$', TagEditView.as_view(), name='tag.edit'),
 ]
 
 
