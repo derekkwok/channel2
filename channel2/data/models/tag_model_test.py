@@ -1,10 +1,15 @@
 import datetime
+import os
+import tempfile
 
 from django import test
+from django.core.files.base import ContentFile
+from django.test import override_settings
 
 from channel2.data.models import tag_model
 
 
+@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class TagTest(test.TestCase):
 
     def test_relationship(self):
@@ -34,3 +39,13 @@ class TagTest(test.TestCase):
         self.assertEqual(
             '2018 Q4',
             tag_model.get_anime_season_name(timestamp))
+
+    def test_tag_delete(self):
+        tag = tag_model.Tag.objects.create(name='Test Tag')
+        tag.cover_image.save(
+            'test-tag-cover-image.jpg',
+            ContentFile(b'Hello World!'))
+        filepath = tag.cover_image.path
+        self.assertTrue(os.path.exists(filepath))
+        tag.delete()
+        self.assertFalse(os.path.exists(filepath))

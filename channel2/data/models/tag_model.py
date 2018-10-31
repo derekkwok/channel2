@@ -75,6 +75,10 @@ class Tag(models.Model):
             counter += 1
         super().save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        self.cover_image.delete()
+        super().delete(*args, **kwargs)
+
 
 class TagChildren(models.Model):
 
