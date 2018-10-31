@@ -16,6 +16,10 @@ class TagViewTest(test.TestCase):
         self.tag = tag_model.Tag.objects.create(name='Test Tag')
         self.url = urls.reverse('tag', args=[self.tag.pk, self.tag.slug])
 
+    def test_get_404(self):
+        response = self.client.get(urls.reverse('tag', args=[0, 'invalid-tag']))
+        self.assertEqual(response.status_code, 404)
+
     def test_get(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
@@ -25,6 +29,10 @@ class TagViewTest(test.TestCase):
         url = urls.reverse('tag', args=[self.tag.pk, 'wrong-slug'])
         response = self.client.get(url)
         self.assertRedirects(response, self.url)
+
+    def test_post_404(self):
+        response = self.client.post(urls.reverse('tag', args=[0, 'invalid-tag']))
+        self.assertEqual(response.status_code, 404)
 
     def test_post(self):
         response = self.client.post(self.url, data={

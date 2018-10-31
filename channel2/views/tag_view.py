@@ -3,6 +3,7 @@ from typing import Text
 from django import shortcuts
 from django.http import request as req_module
 from django.http import response as resp_module
+from django.shortcuts import get_object_or_404
 
 from channel2.data.models import video_model
 from channel2.data.models import tag_model
@@ -18,7 +19,7 @@ class TagView(views.TemplateView):
             tag_pk: int,
             tag_slug: Text) -> resp_module.HttpResponse:
         del request  # Unused.
-        tag = tag_model.Tag.objects.get(pk=tag_pk)
+        tag = get_object_or_404(tag_model.Tag, pk=tag_pk)
         if tag.slug != tag_slug:
             return shortcuts.redirect('tag', tag_pk=tag_pk, tag_slug=tag.slug)
         return self.render_to_response({
@@ -34,7 +35,7 @@ class TagView(views.TemplateView):
             tag_pk: int,
             tag_slug: Text) -> resp_module.HttpResponse:
         del tag_slug  # Unused.
-        tag = tag_model.Tag.objects.get(pk=tag_pk)
+        tag = get_object_or_404(tag_model.Tag, pk=tag_pk)
         for file in request.FILES.getlist('files'):
             file_lib.create_video(file, tag)
         return shortcuts.redirect('tag', tag_pk=tag_pk, tag_slug=tag.slug)

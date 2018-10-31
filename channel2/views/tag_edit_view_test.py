@@ -30,4 +30,5 @@ class TagEditViewTest(test.TestCase):
         })
         tag = tag_model.Tag.objects.get(pk=self.tag.pk)
         self.assertEqual(tag.name, 'New Tag Name')
+        self.assertEqual(tag.type, tag_model.TagType.ANIME_TAG)
         self.assertRedirects(response, urls.reverse('tag', args=[tag.pk, tag.slug]))
