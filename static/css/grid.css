@@ -1,7 +1,5 @@
 @media screen and (max-width: 999px) {
     .nav {
-        --nav-bar-width: 300px;
-
         position: fixed;
         top: var(--nav-bar-height);
         bottom: 0;
@@ -37,7 +35,7 @@
 @media screen and (min-width: 1000px) {
     .page {
         display: grid;
-        grid-template-columns: 300px auto;
+        grid-template-columns: var(--nav-bar-width) auto;
         grid-template-rows: auto;
         grid-template-areas: "nav content";
     }
@@ -47,7 +45,7 @@
         overflow: auto;
         padding: 24px 48px;
         position: fixed;
-        width: 300px;
+        width: var(--nav-bar-width);
     }
     .nav-bar {
         display: none;

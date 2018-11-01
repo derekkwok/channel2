@@ -1,6 +1,9 @@
+/**
+ * Tag parents (these appear as badges).
+ */
 .tag-parent-list {
     list-style-type: none;
-    margin: -12px -4px 12px;
+    margin: 24px -4px;
     padding: 0;
 }
 
@@ -17,6 +20,9 @@
     padding: 4px 8px;
 }
 
+/**
+ * Tag children (these appear as links).
+ */
 .tag-child-list {
     list-style-type: none;
     padding: 0;
@@ -30,11 +36,20 @@
     display: block;
 }
 
+/**
+ * Tag cover image.
+ */
 .tag-cover-image {
     float: left;
     margin: 0 24px 24px 0;
     max-height: 270px;
     max-width: 180px;
+}
+
+@media screen and (max-width: 599px) {
+    .tag-cover-image {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -46,6 +61,9 @@
     }
 }
 
+/**
+ * Tag video list.
+ */
 .tag-video-list {
     clear: both;
     display: block;
@@ -67,6 +85,9 @@
     font-size: 12px;
 }
 
+/**
+ * Currently airing tag list.
+ */
 .ti-list {
     list-style-type: none;
     margin: 12px -12px;

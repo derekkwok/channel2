@@ -17,7 +17,9 @@
 
 @media screen and (max-width: 999px) {
     .nav-logo > h1 {
-        margin: 0.25em 0;
+        font-size: 1em;
+        margin: 1em 0;
+        text-transform: uppercase;
     }
 }
 

@@ -14,9 +14,11 @@
     --text-secondary: #bfbfbf;
 
     --form-input-bg: #1a1a1a;
+    --form-input-border: 1px solid #333333;
 
     /* grid */
     --nav-bar-height: 50px;
+    --nav-bar-width: 300px;
 
     /* table */
     --table-border: 1px solid #333333;
