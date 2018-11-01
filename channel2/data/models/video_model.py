@@ -20,6 +20,10 @@ class Video(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):  # pylint: disable=arguments-differ
-        if not self.file:
+        if not self.pk and not self.file:
             raise RuntimeError('The file attribute must be set.')
         return super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):  # pylint: disable=arguments-differ
+        self.file.delete()
+        super().delete(*args, **kwargs)
