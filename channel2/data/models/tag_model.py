@@ -76,7 +76,7 @@ class Tag(models.Model):
         super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):  # pylint: disable=arguments-differ
-        self.cover_image.delete()
+        self.cover_image.delete()  # pylint: disable=no-member
         super().delete(*args, **kwargs)
 
 

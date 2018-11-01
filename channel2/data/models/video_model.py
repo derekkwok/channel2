@@ -25,5 +25,5 @@ class Video(models.Model):
         return super().save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):  # pylint: disable=arguments-differ
-        self.file.delete()
+        self.file.delete()    # pylint: disable=no-member
         super().delete(*args, **kwargs)
