@@ -3,13 +3,13 @@
         position: fixed;
         top: var(--nav-bar-height);
         bottom: 0;
-        left: calc(-1 * var(--nav-bar-width));
+        left: calc(-1 * var(--nav-bar-small-width));
 
         overflow: auto;
-        padding: 24px 36px;
+        padding: 24px;
         transform: translate3d(0, 0, 0);
         transition: 300ms ease;
-        width: var(--nav-bar-width);
+        width: var(--nav-bar-small-width);
         z-index: 1000;
     }
     .nav-bar {
@@ -19,12 +19,13 @@
         left: 0;
 
         align-items: center;
+        border-top: 2px solid #000;
         display: flex;
-        height: var(--nav-bar-height);
+        height: calc(var(--nav-bar-height) + 2px);
         z-index: 1000;
     }
     .nav-active {
-        transform: translate3d(var(--nav-bar-width), 0, 0);
+        transform: translate3d(var(--nav-bar-small-width), 0, 0);
         transition: 300ms ease;
     }
     .content {

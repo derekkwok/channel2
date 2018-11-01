@@ -2,19 +2,6 @@
     background-color: var(--sidebar-bg);
 }
 
-.nav-bar-menu-button {
-    align-items: center;
-    border: none;
-    background: transparent;
-    color: var(--text-primary);
-    display: flex;
-    height: 48px;
-    justify-content: center;
-    outline: none;
-    text-align: center;
-    width: 48px;
-}
-
 @media screen and (max-width: 999px) {
     .nav-logo > h1 {
         font-size: 1em;
@@ -42,4 +29,43 @@
 
 .nav-link > .material-icons {
     margin-right: 12px;
+}
+
+/**
+ * Nav search.
+ */
+.nav-search-input, .nav-bar-search-input {
+    background-color: var(--main-bg);
+    border: 1px solid var(--main-bg);
+}
+
+.nav-search-input:focus, .nav-bar-search-input:focus {
+    border: 1px solid var(--main-bg);
+}
+
+.nav-search-input {
+    margin: 0 -12px 12px;
+    width: 228px;
+}
+
+@media screen and (max-width: 999px) {
+    .nav-search-input {
+        display: none;
+    }
+}
+
+/**
+ * Nav bar (small screen devices only).
+ */
+.nav-bar-menu-button {
+    align-items: center;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    display: flex;
+    height: var(--nav-bar-height);
+    justify-content: center;
+    outline: none;
+    text-align: center;
+    width: var(--nav-bar-height);
 }

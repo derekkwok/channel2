@@ -19,6 +19,7 @@
     /* grid */
     --nav-bar-height: 50px;
     --nav-bar-width: 300px;
+    --nav-bar-small-width: 300px;
 
     /* table */
     --table-border: 1px solid #333333;
