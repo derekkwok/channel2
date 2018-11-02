@@ -54,9 +54,9 @@ class TagCreateAnimeForm(forms.Form):
             cover_name,
             ContentFile(self.cover_data.bytes))
         for genre in self.genres:
-            tag_model.TagChildren.objects.create(parent=genre, child=self.tag)
+            tag_model.TagChildren.objects.create(child=genre, parent=self.tag)
         for season in self.seasons:
-            tag_model.TagChildren.objects.create(parent=season, child=self.tag)
+            tag_model.TagChildren.objects.create(child=season, parent=self.tag)
         return self.tag
 
 

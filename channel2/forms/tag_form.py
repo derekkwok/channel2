@@ -39,6 +39,11 @@ class TagForm(forms.ModelForm):
         self.label_suffix = ''
         self.children_tag_models = set()
 
+        if 'instance' in kwargs:
+            instance = kwargs['instance']
+            self.initial['children'] = ', '.join(
+                instance.children.all().values_list('name', flat=True))
+
     def clean_name(self):
         name = self.cleaned_data.get('name')
         if ',' in name:

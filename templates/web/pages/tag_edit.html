@@ -2,13 +2,13 @@
 {% import 'macros/forms.html' as forms with context %}
 
 {% block content %}
-    <h1 class="page-title">Edit Tag: {{ tag.name }}</h1>
+    <h1 class="page-title">Edit Tag</h1>
     <form action="" method="post" enctype="multipart/form-data">
         {{ forms.csrf_input() }}
         {{ forms.field(form.name) }}
         {{ forms.field(form.type) }}
         {{ forms.field(form.children) }}
         {{ forms.field(form.description) }}
-        <button>Create Tag</button>
+        <button>Save</button>
     </form>
 {% endblock %}
