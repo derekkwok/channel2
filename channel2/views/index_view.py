@@ -18,5 +18,5 @@ class IndexView(views.TemplateView):
             name=tag_name,
             type=tag_model.TagType.ANIME_SEASON)[0]
         return self.render_to_response({
-            'tags': tag.children.all().order_by('name'),
+            'tags': tag.parents.all().order_by('name'),
         })
