@@ -1,0 +1,10 @@
+.tag-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tag-child-link {
+    border-top: 1px dashed #333;
+    display: block;
+    padding: 12px 0;
+}

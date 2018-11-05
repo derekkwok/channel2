@@ -1,0 +1,62 @@
+.ti-list {
+    list-style-type: none;
+    margin: 12px -12px;
+    padding: 0;
+}
+
+.ti-item {
+    display: inline-block;
+    padding: 12px;
+    width: 240px;
+}
+
+.ti-image {
+    max-width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+    .ti-item {
+        width: 50%;
+        padding: 4px 8px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .ti-item {
+        width: 33%;
+        padding: 4px 8px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 999px) {
+    .ti-item {
+        width: 25%;
+        padding: 4px 8px;
+    }
+}
+
+.ti-link {
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.ti-info {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.ti-link-title {
+    background-color: var(--main-bg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    opacity: 0.7;
+    padding: 12px;
+}

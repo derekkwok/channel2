@@ -9,6 +9,9 @@
 @import 'typography.css';
 @import 'utils.css';
 
-/* Import component and page styles. */
 @import 'nav.css';
-@import 'tag.css';
+
+/* Import page styles. */
+@import 'pages/index.css';
+@import 'pages/tag.css';
+@import 'pages/tag_list.css';
