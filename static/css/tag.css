@@ -1,78 +1,33 @@
-/**
- * Tag parents (these appear as badges).
- */
-.tag-parent-list {
-    list-style-type: none;
-    margin: 24px -4px;
-    padding: 0;
+.page-title {
+    grid-area: title;
+    margin-bottom: 24px;
 }
 
-.tag-parent {
-    display: inline-block;
+.tag-image {
+    grid-area: image;
+    margin-bottom: 24px;
 }
 
-.tag-parent-link {
-    background-color: #333333;
-    border-radius: 3px;
-    font-size: 14px;
-    display: block;
-    margin: 4px;
-    padding: 4px 8px;
+.tag-children {
+    grid-area: children;
 }
 
-/**
- * Tag children (these appear as links).
- */
-.tag-child-list {
-    list-style-type: none;
-    padding: 0;
+.tag-description {
+    grid-area: description;
+    margin: 0 0 24px;
+    max-width: 600px;
 }
 
-.tag-child-item {
-    display: block;
+.tag-parents {
+    grid-area: parents;
 }
 
-.tag-child-link {
-    display: block;
+.tag-videos {
+    grid-area: videos;
 }
 
-/**
- * Tag cover image.
- */
-.tag-cover-image {
-    float: left;
-    margin: 0 24px 24px 0;
-    max-height: 270px;
-    max-width: 180px;
-}
-
-@media screen and (max-width: 599px) {
-    .tag-cover-image {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 600px) {
-    .tag-cover-image {
-        float: left;
-        margin: 0 24px 24px 0;
-        max-height: 360px;
-        max-width: 240px;
-    }
-}
-
-/**
- * Tag video list.
- */
-.tag-video-list {
-    clear: both;
-    display: block;
-    list-style-type: none;
-    padding: 0;
-}
-
-.tag-video-list > li {
-    border-top: 1px dashed #333333;
+.tag-video {
+    border-top: 1px dashed #333;
     padding: 12px 0;
 }
 
@@ -80,9 +35,63 @@
     display: block;
 }
 
-.tag-video-link-mx {
-    display: block;
-    font-size: 12px;
+.tag-video-info-item {
+    color: var(--text-secondary);
+    font-size: 0.8em;
+}
+
+.tag-video-info-item:after {
+    content: '';
+    padding-right: calc(24px * 0.8);
+}
+
+.tag-video-info-item:after {
+    content: '';
+}
+
+.tag-badge {
+    background-color: #333;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 0 8px 8px 0;
+    padding: 4px 8px;
+}
+
+@media screen and (min-width: 600px) {
+    .tag-page {
+        display: grid;
+        grid-template-columns: 200px auto;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+            "title title"
+            "image children"
+            "image description"
+            "parents parents"
+            "videos videos";
+        grid-column-gap: 24px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .tag-page {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas:
+            "title"
+            "children"
+            "image"
+            "description"
+            "parents"
+            "videos";
+        grid-column-gap: 24px;
+    }
+    .tag-image {
+        display: none;
+    }
+    .tag-children {
+        margin-bottom: 24px;
+    }
 }
 
 /**

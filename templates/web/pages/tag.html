@@ -2,52 +2,37 @@
 {% import 'macros/forms.html' as forms with context %}
 
 {% block content %}
-    <h1 class="page-title">{{ tag.name }}</h1>
-    {% if tag_parents %}
-        <ul class="tag-parent-list">
-            {% for ptag in tag_parents %}
-                <li class="tag-parent">
-                    <a href="{{ url('tag', args=[ptag.pk, ptag.slug]) }}" class="tag-parent-link">{{ ptag.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% if tag_children %}
-        <ul class="tag-child-list">
+    <div class="tag-page">
+        <h1 class="page-title">{{ tag.name }}</h1>
+        {% if tag.cover_image %}
+            <img src="{{ tag.cover_image.url }}" class="tag-image">
+        {% else %}
+            <div>No Image</div>
+        {% endif %}
+        <div class="tag-children">
             {% for ctag in tag_children %}
-                <li class="tag-child-item">
-                    <a href="{{ url('tag', args=[ctag.pk, ctag.slug]) }}" class="tag-child-link">{{ ctag.name }}</a>
-                </li>
+                <a href="{{ url('tag', args=[ctag.pk, ctag.slug]) }}" class="tag-badge">{{ ctag.name }}</a>
             {% endfor %}
-        </ul>
-    {% endif %}
-    {% if 'upload' in request.GET %}
-        <form action="" method="post" enctype="multipart/form-data" id="upload-form">
-            {{ forms.csrf_input() }}
-            <div class="form-field">
-                <input type="file" name="files" multiple>
-            </div>
-            <div class="form-field">
-                <button>Upload</button>
-            </div>
-        </form>
-    {% endif %}
-    {% if tag.cover_image %}
-        <img src="{{ tag.cover_image.url }}" class="tag-cover-image">
-    {% endif %}
-    {% if tag.description %}
-        <p>{{ tag.description }}</p>
-    {% endif %}
-    {% if videos %}
-        <ul class="tag-video-list">
+        </div>
+        <p class="tag-description">{{ tag.description }}</p>
+        <div class="tag-parents">
+            {% for ptag in tag_parents %}
+                <a href="{{ url('tag', args=[ptag.pk, ptag.slug]) }}">{{ ptag.name }}</a>
+            {% endfor %}
+        </div>
+        <div class="tag-videos">
             {% for video in videos %}
-                <li>
+                <div class="tag-video">
                     <a href="{{ video.file.url }}" class="tag-video-link">{{ video.name }}</a>
-                    <a href="intent:http://channel2.derekkwok.net{{ video.file.url }}#Intent;package=com.mxtech.videoplayer.pro;end" class="tag-video-link-mx">
-                        <span class="secondary">MX Player Pro</span>
-                    </a>
-                </li>
+                    <div class="tag-video-info">
+                        <span class="tag-video-info-item">{{ video.file.size | filesizeformat }}</span>
+                        <span class="tag-video-info-item">{{ video.created_on | date }}</span>
+                        <a href="intent:http://channel2.derekkwok.net{{ video.file.url }}#Intent;package=com.mxtech.videoplayer.pro;end" class="tag-video-info-item">
+                            <span class="secondary">MX Player Pro</span>
+                        </a>
+                    </div>
+                </div>
             {% endfor %}
-        </ul>
-    {% endif %}
+        </div>
+    </div>
 {% endblock %}
