@@ -11,6 +11,7 @@ html, body {
 
 a {
     color: var(--text-primary);
+    cursor: pointer;
     text-decoration: none;
 }
 

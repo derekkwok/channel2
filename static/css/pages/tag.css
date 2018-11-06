@@ -1,6 +1,59 @@
+@media screen and (min-width: 600px) {
+    .tag-page {
+        display: grid;
+        grid-template-columns: 200px minmax(auto, 800px);
+        grid-template-rows: auto auto 1fr auto auto auto;
+        grid-template-areas:
+            "title title"
+            "image children"
+            "image description"
+            "controls controls"
+            "parents parents"
+            "videos videos";
+        grid-column-gap: 24px;
+    }
+    .mx-link { display: none; }
+}
+
+@media screen and (max-width: 599px) {
+    .tag-page {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-areas:
+            "title"
+            "controls"
+            "children"
+            "image"
+            "description"
+            "parents"
+            "videos";
+        grid-column-gap: 24px;
+    }
+    .tag-image {
+        display: none;
+    }
+    .tag-controls {
+        display: none;
+    }
+}
+
 .page-title {
     grid-area: title;
     margin-bottom: 24px;
+}
+
+.tag-controls {
+    grid-area: controls;
+    margin-bottom: 24px;
+}
+
+.tag-control-button {
+    display: inline-block;
+    font-size: 0.8em;
+    margin-right: 12px;
+    padding: 8px 12px;
+    width: auto;
 }
 
 .tag-image {
@@ -66,39 +119,4 @@
     font-size: 14px;
     margin: 0 8px 8px 0;
     padding: 4px 8px;
-}
-
-@media screen and (min-width: 600px) {
-    .tag-page {
-        display: grid;
-        grid-template-columns: 200px minmax(auto, 800px);
-        grid-template-rows: auto auto 1fr auto auto;
-        grid-template-areas:
-            "title title"
-            "image children"
-            "image description"
-            "parents parents"
-            "videos videos";
-        grid-column-gap: 24px;
-    }
-    .mx-link { display: none; }
-}
-
-@media screen and (max-width: 599px) {
-    .tag-page {
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: auto auto auto auto auto;
-        grid-template-areas:
-            "title"
-            "children"
-            "image"
-            "description"
-            "parents"
-            "videos";
-        grid-column-gap: 24px;
-    }
-    .tag-image {
-        display: none;
-    }
 }

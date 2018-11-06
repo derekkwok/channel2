@@ -3,7 +3,7 @@ form {
     width: 100%;
 }
 
-input, textarea, select, button {
+input, textarea, select, button, .button {
     background-color: var(--form-input-bg);
     border: 1px solid var(--form-input-bg);
     border-radius: 0;
@@ -14,7 +14,7 @@ input, textarea, select, button {
     outline: none;
 }
 
-input:focus, textarea:focus, select:focus, button:focus {
+input:focus, textarea:focus, select:focus, button:focus, .button:focus {
     border: var(--form-input-border);
 }
 
@@ -40,7 +40,7 @@ textarea {
     resize: vertical;
 }
 
-button {
+button, .button {
     cursor: pointer;
     padding: 12px;
 }

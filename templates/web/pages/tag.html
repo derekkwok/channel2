@@ -17,6 +17,11 @@
         {% if tag.description %}
             <p class="tag-description">{{ tag.description }}</p>
         {% endif %}
+        <div class="tag-controls">
+            <a href="{{ url('tag.edit', args=[tag.pk, tag.slug]) }}" class="button tag-control-button">Edit Tag</a>
+            <a onclick="document.querySelector('#tag-delete-form').submit();" class="button tag-control-button float-right">Delete Tag</a>
+            <input type="file" multiple name="files" class="button tag-control-button" form="tag-upload-form" onchange="document.querySelector('#tag-upload-form').submit();">
+        </div>
         {% if tag_parents %}
             <div class="tag-parents">
                 {% for ptag in tag_parents %}
@@ -39,4 +44,10 @@
             {% endfor %}
         </div>
     </div>
+    <form action="{{ url('tag.delete', args=[tag.pk, tag.slug]) }}" method="post" id="tag-delete-form">
+        {{ forms.csrf_input() }}
+    </form>
+    <form action="{{ url('tag', args=[tag.pk, tag.slug]) }}" method="post" enctype="multipart/form-data" id="tag-upload-form">
+        {{ forms.csrf_input() }}
+    </form>
 {% endblock %}
