@@ -41,6 +41,10 @@
     display: block;
 }
 
+.tag-video-link:visited {
+    color: var(--text-secondary);
+}
+
 .tag-video-info-item {
     color: var(--text-secondary);
     font-size: 0.8em;
@@ -77,6 +81,7 @@
             "videos videos";
         grid-column-gap: 24px;
     }
+    .mx-link { display: none; }
 }
 
 @media screen and (max-width: 599px) {
