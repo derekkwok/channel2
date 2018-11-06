@@ -19,7 +19,9 @@
         {% endif %}
         <div class="tag-controls">
             <a href="{{ url('tag.edit', args=[tag.pk, tag.slug]) }}" class="button tag-control-button">Edit Tag</a>
-            <a onclick="document.querySelector('#tag-delete-form').submit();" class="button tag-control-button float-right">Delete Tag</a>
+            {% if not tag_children and not tag_parents %}
+                <a onclick="document.querySelector('#tag-delete-form').submit();" class="button tag-control-button float-right">Delete Tag</a>
+            {% endif %}
             <input type="file" multiple name="files" class="button tag-control-button" form="tag-upload-form" onchange="document.querySelector('#tag-upload-form').submit();">
         </div>
         {% if tag_parents %}

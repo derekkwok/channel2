@@ -22,3 +22,10 @@ class TagDeleteViewTest(test.TestCase):
         response = self.client.post(self.url)
         self.assertRedirects(response, urls.reverse('index'))
         self.assertFalse(tag_model.Tag.objects.filter(name='Test Tag').exists())
+
+    def test_post_tag_has_parents(self):
+        child_tag = tag_model.Tag.objects.create(name='Child Tag')
+        tag_model.TagChildren.objects.create(parent=self.tag, child=child_tag)
+        response = self.client.post(self.url)
+        self.assertRedirects(response, urls.reverse('tag', args=[self.tag.pk, self.tag.slug]))
+        self.assertTrue(tag_model.Tag.objects.filter(pk=self.tag.pk).exists())

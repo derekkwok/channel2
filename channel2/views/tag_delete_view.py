@@ -21,5 +21,7 @@ class TagDeleteView(views.TemplateView):
         del request  # Unused.
         del tag_slug  # Unused.
         tag = get_object_or_404(tag_model.Tag, pk=tag_pk)
+        if tag.children.exists() or tag.parents.exists():
+            return shortcuts.redirect('tag', tag_pk=tag.pk, tag_slug=tag.slug)
         tag.delete()
         return shortcuts.redirect('index')
