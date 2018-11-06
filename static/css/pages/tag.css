@@ -16,11 +16,16 @@
 .tag-description {
     grid-area: description;
     margin: 0 0 24px;
-    max-width: 600px;
 }
 
 .tag-parents {
     grid-area: parents;
+}
+
+.tag-parent-link {
+    border-top: 1px dashed #333;
+    display: block;
+    padding: 12px 0;
 }
 
 .tag-videos {
@@ -62,7 +67,7 @@
 @media screen and (min-width: 600px) {
     .tag-page {
         display: grid;
-        grid-template-columns: 200px auto;
+        grid-template-columns: 200px minmax(auto, 800px);
         grid-template-rows: auto auto 1fr auto auto;
         grid-template-areas:
             "title title"

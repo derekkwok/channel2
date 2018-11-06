@@ -6,20 +6,24 @@
         <h1 class="page-title">{{ tag.name }}</h1>
         {% if tag.cover_image %}
             <img src="{{ tag.cover_image.url }}" class="tag-image">
-        {% else %}
-            <div>No Image</div>
         {% endif %}
-        <div class="tag-children">
-            {% for ctag in tag_children %}
-                <a href="{{ url('tag', args=[ctag.pk, ctag.slug]) }}" class="tag-badge">{{ ctag.name }}</a>
-            {% endfor %}
-        </div>
-        <p class="tag-description">{{ tag.description }}</p>
-        <div class="tag-parents">
-            {% for ptag in tag_parents %}
-                <a href="{{ url('tag', args=[ptag.pk, ptag.slug]) }}">{{ ptag.name }}</a>
-            {% endfor %}
-        </div>
+        {% if tag_children %}
+            <div class="tag-children">
+                {% for ctag in tag_children %}
+                    <a href="{{ url('tag', args=[ctag.pk, ctag.slug]) }}" class="tag-badge">{{ ctag.name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if tag.description %}
+            <p class="tag-description">{{ tag.description }}</p>
+        {% endif %}
+        {% if tag_parents %}
+            <div class="tag-parents">
+                {% for ptag in tag_parents %}
+                    <a href="{{ url('tag', args=[ptag.pk, ptag.slug]) }}" class="tag-parent-link">{{ ptag.name }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="tag-videos">
             {% for video in videos %}
                 <div class="tag-video">
