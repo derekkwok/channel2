@@ -18,3 +18,11 @@ a {
 img {
     max-width: 100%;
 }
+
+.google-cast-button {
+    background: transparent;
+    border: none;
+    outline: none;
+    height: var(--nav-bar-height);
+    width: var(--nav-bar-height);
+}
