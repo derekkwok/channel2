@@ -11,3 +11,5 @@ STATICFILES_DIRS: List[Text] = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+VERSION = 'dev'

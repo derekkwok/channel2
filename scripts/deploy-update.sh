@@ -24,6 +24,9 @@ C2_MODE=prod /var/www/channel2/venv/bin/python /var/www/channel2/server/manage.p
 C2_MODE=prod /var/www/channel2/venv/bin/python /var/www/channel2/server/manage.py migrate --noinput
 chown www-data: /var/www/channel2/db/db.sqlite3
 
+# Setup version
+echo `date +'%s'` > /var/www/channel2/version.txt
+
 # Restart Caddy.
 service caddy stop
 service caddy start

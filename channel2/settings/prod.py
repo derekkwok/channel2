@@ -15,6 +15,8 @@ STATICFILES_DIRS: List[Text] = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/var/www/channel2/media'
 
+VERSION = open('/var/www/channel2/version.txt').read().strip()
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

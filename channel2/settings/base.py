@@ -2,7 +2,9 @@ import os
 from typing import Callable, List, Text
 
 from django.http import request
-from django.template import context_processors
+from django.template import context_processors as django_cp
+
+from channel2.lib import context_processors
 
 BASE_DIR = os.path.abspath(__file__)
 for _ in range(3):
@@ -57,7 +59,9 @@ JINJA2_DIRS: List[Text] = [
     os.path.join(BASE_DIR, 'templates'),
 ]
 JINJA2_CONTEXT_PROCESSORS: List[Callable[[request.HttpRequest], None]] = [
-    context_processors.csrf,
-    context_processors.debug,
-    context_processors.request,
+    django_cp.csrf,
+    django_cp.debug,
+    django_cp.request,
+
+    context_processors.version,
 ]
