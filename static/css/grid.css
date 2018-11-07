@@ -29,7 +29,7 @@
         transition: 300ms ease;
     }
     .content {
-        padding: var(--nav-bar-height) 24px;
+        padding: calc(var(--nav-bar-height) + 12px) 24px;
     }
 }
 
