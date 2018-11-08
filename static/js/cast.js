@@ -18,7 +18,7 @@ class Channel2 {
 
     /** Registers an anchor tag to be castable. */
     registerFileLinks() {
-        const links = document.getElementsByClassName('file-link');
+        const links = document.getElementsByClassName('tag-video-link');
         for (const link of links) {
             link.onclick = this.handleFileLinkClick.bind(this);
         }

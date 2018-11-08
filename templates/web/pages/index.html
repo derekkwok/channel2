@@ -6,7 +6,7 @@
         {% for tag in tags %}
             <li class="ti-item">
                 <a href="{{ url('tag', args=[tag.pk, tag.slug]) }}" class="ti-link">
-                    <img src="{{ tag.cover_image.url }}" class="ti-image">
+                    <img src="{{ tag.cover_image.url }}" class="loy">
                     <div class="ti-info">
                         <span class="ti-link-title">{{ tag.name }}</span>
                     </div>

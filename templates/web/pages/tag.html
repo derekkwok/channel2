@@ -34,7 +34,7 @@
         <div class="tag-videos">
             {% for video in videos %}
                 <div class="tag-video">
-                    <a href="{{ video.file.url }}" class="tag-video-link">{{ video.name }}</a>
+                    <a href="{{ video.file.url }}" class="tag-video-link" title="{{ video.name }}">{{ video.name }}</a>
                     <div class="tag-video-info">
                         <span class="tag-video-info-item">{{ video.file.size | filesizeformat }}</span>
                         <span class="tag-video-info-item">{{ video.created_on | date }}</span>
