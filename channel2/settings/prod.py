@@ -2,6 +2,7 @@ from .base import *  # pylint: disable=wildcard-import,unused-wildcard-import
 
 ALLOWED_HOSTS = [
     'channel2.derekkwok.net',
+    'local.derekkwok.net',
 ]
 
 DATABASES['default']['NAME'] = '/var/www/channel2/db/db.sqlite3'
